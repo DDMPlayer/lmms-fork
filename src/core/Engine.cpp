@@ -22,6 +22,7 @@
  *
  */
 
+#include <luacpp_static>
 
 #include "Engine.h"
 #include "AudioEngine.h"
@@ -87,6 +88,8 @@ void Engine::init( bool renderOnly )
 
 	emit engine->initProgress(tr("Launching audio engine threads"));
 	s_audioEngine->startProcessing();
+	
+	
 }
 
 
