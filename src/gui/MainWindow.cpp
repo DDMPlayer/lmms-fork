@@ -35,6 +35,10 @@
 #include <QShortcut>
 #include <QSplitter>
 
+#include <QDir>
+#include <QStringList>
+#include <QString>
+
 #include "AboutDialog.h"
 #include "AutomationEditor.h"
 #include "ControllerRackView.h"
@@ -259,6 +263,11 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::ddm_reloadMidi()
+{
+	printf("DDM RELOAD MIDI CALLED\n");
+	Engine::audioEngine()->ddm_reloadMidiDevices();
+}
 
 
 void MainWindow::finalize()
@@ -323,6 +332,10 @@ void MainWindow::finalize()
 					this,
 					SLOT(onExportProjectMidi()),
 					Qt::CTRL + Qt::Key_M );
+
+	project_menu->addAction( embed::getIconPixmap( "midi_file" ),
+					tr( "Reload MIDI Devices" ),
+					this, SLOT(ddm_reloadMidi()));
 
 	project_menu->addSeparator();
 	project_menu->addAction( embed::getIconPixmap( "exit" ), tr( "&Quit" ),
@@ -405,10 +418,10 @@ void MainWindow::finalize()
 	auto project_new = new ToolButton(
 		embed::getIconPixmap("project_new"), tr("Create new project"), this, SLOT(createNewProject()), m_toolBar);
 
-	auto project_new_from_template = new ToolButton(embed::getIconPixmap("project_new_from_template"),
-		tr("Create new project from template"), this, SLOT(emptySlot()), m_toolBar);
-	project_new_from_template->setMenu( templates_menu );
-	project_new_from_template->setPopupMode( ToolButton::InstantPopup );
+	auto project_new_from_template = new ToolButton(embed::getIconPixmap("edit_redo"),
+		tr("Open next project in sequence"), this, SLOT(openNextProject()), m_toolBar);
+	//project_new_from_template->setMenu( templates_menu );
+	//project_new_from_template->setPopupMode( ToolButton::InstantPopup );
 
 	auto project_open = new ToolButton(
 		embed::getIconPixmap("project_open"), tr("Open existing project"), this, SLOT(openProject()), m_toolBar);
@@ -749,6 +762,54 @@ void MainWindow::createNewProject()
 	}
 }
 
+void MainWindow::openNextProject() {
+	QString filePath = Engine::getSong()->projectFileName();
+	
+		   // Identify the folder from where the path is
+	QDir directory(QDir::currentPath());
+	
+	if (!directory.cd(QFileInfo(filePath).path())) {
+		//qDebug() << "Failed to change to folder:" << directory.errorString();
+		return;
+	}
+	
+		   // List all files from that folder in alphabetical order and save to an array
+	QStringList fileList = directory.entryList(QStringList() << "*.mmpz", QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
+	
+	if (fileList.isEmpty()) {
+		//qDebug() << "No files found in the directory.";
+		return;
+	}
+	
+	// Create a case-insensitive collator
+	fileList.sort(Qt::CaseInsensitive);
+	
+		   // Find the original file's index
+	QString originalFileName = QFileInfo(filePath).fileName();
+	int originalIndex = fileList.indexOf(originalFileName);
+	
+	if (originalIndex == -1) {
+		//qDebug() << "Original file not found in the directory.";
+		return;
+	}
+	
+		   // Add one to that index
+	int newIndex = (originalIndex + 1) % fileList.size();
+	
+		   // Find the new file matching that index
+	QString newFilePath = directory.filePath(fileList.at(newIndex));
+	
+	//qDebug() << "Original File:" << originalFileName;
+	//qDebug() << "New File Path:" << newFilePath;
+	
+	Song *song = Engine::getSong();
+	
+	song->stop();
+	setCursor( Qt::WaitCursor );
+	song->loadProject( newFilePath );
+	setCursor( Qt::ArrowCursor );
+	
+}
 
 
 

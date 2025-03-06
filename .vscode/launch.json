@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Call build-debug.bat",
+            "type": "node",
+            "request": "launch",
+            "program": "D:\\Programas\\LMMS_compiled\\lmms\\build-debug.bat",
+            "preLaunchTask": "Run build-debug.bat",
+            "windows": {
+                "runtimeExecutable": "cmd.exe",
+                "runtimeArgs": ["/c", "D:\\Programas\\LMMS_compiled\\lmms\\build-debug.bat"]
+            }
+        }
+    ]
+}

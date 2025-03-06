@@ -262,6 +262,7 @@ public:
 		return s;
 	}
 
+	void ddm_reloadMidiDevices();
 
 	bool criticalXRuns() const;
 

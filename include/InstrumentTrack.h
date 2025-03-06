@@ -82,7 +82,8 @@ public:
 	}
 
 	f_cnt_t beatLen( NotePlayHandle * _n ) const;
-
+	
+	void ddm_reloadMidiport();
 
 	// for capturing note-play-events -> need that for arpeggio,
 	// filter and so on

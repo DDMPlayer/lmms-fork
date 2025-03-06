@@ -269,7 +269,6 @@ void MidiWinMM::closeDevices()
 
 
 
-
 void MidiWinMM::openDevices()
 {
 	m_inputDevices.clear();
@@ -300,6 +299,15 @@ void MidiWinMM::openDevices()
 			m_outputDevices[hm] = qstrdup( c.szPname );
 		}
 	}
+}
+
+
+
+void MidiWinMM::ddm_updateDeviceList()
+{
+	printf("Reached MWMM reload\n");
+	closeDevices();
+	openDevices();
 }
 
 

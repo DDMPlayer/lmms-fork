@@ -113,6 +113,13 @@ InstrumentTrack::InstrumentTrack( TrackContainer* tc ) :
 }
 
 
+void InstrumentTrack::ddm_reloadMidiport()
+{
+	printf("\nINSTRUMENT TRACK MIDIPORT CALLED");
+	m_midiPort.ddm_updateMidi();
+}
+
+
 
 bool InstrumentTrack::keyRangeImport() const
 {

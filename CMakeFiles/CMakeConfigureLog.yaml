@@ -1,0 +1,1280 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.12.12+1cce77968 for .NET Framework
+      Build started 12/18/2024 7:45:24 PM.
+      
+      Project "C:\\LMMS-Compiled\\CMakeFiles\\3.31.2\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\3.31.2\\CompilerIdC\\CompilerIdC.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
+      Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\3.31.2\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:00.67
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/LMMS-Compiled/CMakeFiles/3.31.2/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.12.12+1cce77968 for .NET Framework
+      Build started 12/18/2024 7:45:25 PM.
+      
+      Project "C:\\LMMS-Compiled\\CMakeFiles\\3.31.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\3.31.2\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\3.31.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:00.45
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/LMMS-Compiled/CMakeFiles/3.31.2/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-ervd2c"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-ervd2c"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-ervd2c'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ae9c5.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:26 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-ervd2c\\cmTC_ae9c5.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_ae9c5.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-ervd2c\\Debug\\".
+          Creating directory "cmTC_ae9c5.dir\\Debug\\cmTC_ae9c5.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_ae9c5.dir\\Debug\\cmTC_ae9c5.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_ae9c5.dir\\Debug\\cmTC_ae9c5.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ae9c5.dir\\Debug\\\\" /Fd"cmTC_ae9c5.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ae9c5.dir\\Debug\\\\" /Fd"cmTC_ae9c5.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          CMakeCCompilerABI.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-ervd2c\\Debug\\cmTC_ae9c5.exe" /INCREMENTAL /ILK:"cmTC_ae9c5.dir\\Debug\\cmTC_ae9c5.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-ervd2c/Debug/cmTC_ae9c5.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-ervd2c/Debug/cmTC_ae9c5.lib" /MACHINE:X64  /machine:x64 cmTC_ae9c5.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_ae9c5.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-ervd2c\\Debug\\cmTC_ae9c5.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_ae9c5.dir\\Debug\\cmTC_ae9c5.tlog\\unsuccessfulbuild".
+          Touching "cmTC_ae9c5.dir\\Debug\\cmTC_ae9c5.tlog\\cmTC_ae9c5.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-ervd2c\\cmTC_ae9c5.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.44
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      Running the C compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.42.34435.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-p3h35v"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-p3h35v"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-p3h35v'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_19777.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:27 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-p3h35v\\cmTC_19777.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_19777.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-p3h35v\\Debug\\".
+          Creating directory "cmTC_19777.dir\\Debug\\cmTC_19777.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_19777.dir\\Debug\\cmTC_19777.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_19777.dir\\Debug\\cmTC_19777.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_19777.dir\\Debug\\\\" /Fd"cmTC_19777.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_19777.dir\\Debug\\\\" /Fd"cmTC_19777.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-p3h35v\\Debug\\cmTC_19777.exe" /INCREMENTAL /ILK:"cmTC_19777.dir\\Debug\\cmTC_19777.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-p3h35v/Debug/cmTC_19777.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-p3h35v/Debug/cmTC_19777.lib" /MACHINE:X64  /machine:x64 cmTC_19777.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_19777.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-p3h35v\\Debug\\cmTC_19777.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_19777.dir\\Debug\\cmTC_19777.tlog\\unsuccessfulbuild".
+          Touching "cmTC_19777.dir\\Debug\\cmTC_19777.tlog\\cmTC_19777.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-p3h35v\\cmTC_19777.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.44
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (PROJECT)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.42.34435.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:150 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file pthread.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-fg4rcm"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-fg4rcm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_PTHREAD_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-fg4rcm'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9fc5e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:27 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\cmTC_9fc5e.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_9fc5e.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\Debug\\".
+          Creating directory "cmTC_9fc5e.dir\\Debug\\cmTC_9fc5e.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_9fc5e.dir\\Debug\\cmTC_9fc5e.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_9fc5e.dir\\Debug\\cmTC_9fc5e.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9fc5e.dir\\Debug\\\\" /Fd"cmTC_9fc5e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\LMMS_HAVE_PTHREAD_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9fc5e.dir\\Debug\\\\" /Fd"cmTC_9fc5e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\LMMS_HAVE_PTHREAD_H.c"
+          LMMS_HAVE_PTHREAD_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\LMMS_HAVE_PTHREAD_H.c(2,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\cmTC_9fc5e.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\cmTC_9fc5e.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\cmTC_9fc5e.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\LMMS_HAVE_PTHREAD_H.c(2,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-fg4rcm\\cmTC_9fc5e.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.31
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:151 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file semaphore.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-hskuaz"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-hskuaz"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SEMAPHORE_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-hskuaz'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_92359.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:28 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\cmTC_92359.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_92359.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\Debug\\".
+          Creating directory "cmTC_92359.dir\\Debug\\cmTC_92359.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_92359.dir\\Debug\\cmTC_92359.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_92359.dir\\Debug\\cmTC_92359.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_92359.dir\\Debug\\\\" /Fd"cmTC_92359.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\LMMS_HAVE_SEMAPHORE_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_92359.dir\\Debug\\\\" /Fd"cmTC_92359.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\LMMS_HAVE_SEMAPHORE_H.c"
+          LMMS_HAVE_SEMAPHORE_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\LMMS_HAVE_SEMAPHORE_H.c(2,10): error C1083: Cannot open include file: 'semaphore.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\cmTC_92359.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\cmTC_92359.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\cmTC_92359.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\LMMS_HAVE_SEMAPHORE_H.c(2,10): error C1083: Cannot open include file: 'semaphore.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-hskuaz\\cmTC_92359.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:152 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file unistd.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-h5c4w0"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-h5c4w0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_UNISTD_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-h5c4w0'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6fd7c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:28 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\cmTC_6fd7c.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_6fd7c.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\Debug\\".
+          Creating directory "cmTC_6fd7c.dir\\Debug\\cmTC_6fd7c.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_6fd7c.dir\\Debug\\cmTC_6fd7c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_6fd7c.dir\\Debug\\cmTC_6fd7c.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6fd7c.dir\\Debug\\\\" /Fd"cmTC_6fd7c.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\LMMS_HAVE_UNISTD_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6fd7c.dir\\Debug\\\\" /Fd"cmTC_6fd7c.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\LMMS_HAVE_UNISTD_H.c"
+          LMMS_HAVE_UNISTD_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\LMMS_HAVE_UNISTD_H.c(2,10): error C1083: Cannot open include file: 'unistd.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\cmTC_6fd7c.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\cmTC_6fd7c.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\cmTC_6fd7c.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\LMMS_HAVE_UNISTD_H.c(2,10): error C1083: Cannot open include file: 'unistd.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-h5c4w0\\cmTC_6fd7c.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:153 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/types.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xfi1u3"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xfi1u3"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_TYPES_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xfi1u3'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_be69d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:29 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\cmTC_be69d.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_be69d.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\Debug\\".
+          Creating directory "cmTC_be69d.dir\\Debug\\cmTC_be69d.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_be69d.dir\\Debug\\cmTC_be69d.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_be69d.dir\\Debug\\cmTC_be69d.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_be69d.dir\\Debug\\\\" /Fd"cmTC_be69d.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\LMMS_HAVE_SYS_TYPES_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_be69d.dir\\Debug\\\\" /Fd"cmTC_be69d.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\LMMS_HAVE_SYS_TYPES_H.c"
+          LMMS_HAVE_SYS_TYPES_H.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\Debug\\cmTC_be69d.exe" /INCREMENTAL /ILK:"cmTC_be69d.dir\\Debug\\cmTC_be69d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xfi1u3/Debug/cmTC_be69d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xfi1u3/Debug/cmTC_be69d.lib" /MACHINE:X64  /machine:x64 cmTC_be69d.dir\\Debug\\LMMS_HAVE_SYS_TYPES_H.obj
+          cmTC_be69d.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\Debug\\cmTC_be69d.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_be69d.dir\\Debug\\cmTC_be69d.tlog\\unsuccessfulbuild".
+          Touching "cmTC_be69d.dir\\Debug\\cmTC_be69d.tlog\\cmTC_be69d.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xfi1u3\\cmTC_be69d.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.43
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:154 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/ipc.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-y5wfuw"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-y5wfuw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_IPC_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-y5wfuw'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_02d7c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:29 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\cmTC_02d7c.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_02d7c.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\Debug\\".
+          Creating directory "cmTC_02d7c.dir\\Debug\\cmTC_02d7c.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_02d7c.dir\\Debug\\cmTC_02d7c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_02d7c.dir\\Debug\\cmTC_02d7c.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_02d7c.dir\\Debug\\\\" /Fd"cmTC_02d7c.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\LMMS_HAVE_SYS_IPC_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_02d7c.dir\\Debug\\\\" /Fd"cmTC_02d7c.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\LMMS_HAVE_SYS_IPC_H.c"
+          LMMS_HAVE_SYS_IPC_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\LMMS_HAVE_SYS_IPC_H.c(2,10): error C1083: Cannot open include file: 'sys/ipc.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\cmTC_02d7c.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\cmTC_02d7c.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\cmTC_02d7c.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\LMMS_HAVE_SYS_IPC_H.c(2,10): error C1083: Cannot open include file: 'sys/ipc.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y5wfuw\\cmTC_02d7c.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:155 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/time.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-cjz5z6"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-cjz5z6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_TIME_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-cjz5z6'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d5b0f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:30 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\cmTC_d5b0f.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_d5b0f.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\Debug\\".
+          Creating directory "cmTC_d5b0f.dir\\Debug\\cmTC_d5b0f.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_d5b0f.dir\\Debug\\cmTC_d5b0f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_d5b0f.dir\\Debug\\cmTC_d5b0f.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d5b0f.dir\\Debug\\\\" /Fd"cmTC_d5b0f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\LMMS_HAVE_SYS_TIME_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d5b0f.dir\\Debug\\\\" /Fd"cmTC_d5b0f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\LMMS_HAVE_SYS_TIME_H.c"
+          LMMS_HAVE_SYS_TIME_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\LMMS_HAVE_SYS_TIME_H.c(2,10): error C1083: Cannot open include file: 'sys/time.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\cmTC_d5b0f.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\cmTC_d5b0f.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\cmTC_d5b0f.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\LMMS_HAVE_SYS_TIME_H.c(2,10): error C1083: Cannot open include file: 'sys/time.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-cjz5z6\\cmTC_d5b0f.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:156 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/times.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-umseam"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-umseam"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_TIMES_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-umseam'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_4f613.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:30 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\cmTC_4f613.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_4f613.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\Debug\\".
+          Creating directory "cmTC_4f613.dir\\Debug\\cmTC_4f613.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_4f613.dir\\Debug\\cmTC_4f613.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_4f613.dir\\Debug\\cmTC_4f613.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4f613.dir\\Debug\\\\" /Fd"cmTC_4f613.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\LMMS_HAVE_SYS_TIMES_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4f613.dir\\Debug\\\\" /Fd"cmTC_4f613.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\LMMS_HAVE_SYS_TIMES_H.c"
+          LMMS_HAVE_SYS_TIMES_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\LMMS_HAVE_SYS_TIMES_H.c(2,10): error C1083: Cannot open include file: 'sys/times.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\cmTC_4f613.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\cmTC_4f613.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\cmTC_4f613.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\LMMS_HAVE_SYS_TIMES_H.c(2,10): error C1083: Cannot open include file: 'sys/times.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-umseam\\cmTC_4f613.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.26
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:157 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/prctl.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-6splbs"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-6splbs"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_PRCTL_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-6splbs'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9b906.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:30 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\cmTC_9b906.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_9b906.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\Debug\\".
+          Creating directory "cmTC_9b906.dir\\Debug\\cmTC_9b906.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_9b906.dir\\Debug\\cmTC_9b906.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_9b906.dir\\Debug\\cmTC_9b906.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9b906.dir\\Debug\\\\" /Fd"cmTC_9b906.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\LMMS_HAVE_SYS_PRCTL_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9b906.dir\\Debug\\\\" /Fd"cmTC_9b906.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\LMMS_HAVE_SYS_PRCTL_H.c"
+          LMMS_HAVE_SYS_PRCTL_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\LMMS_HAVE_SYS_PRCTL_H.c(2,10): error C1083: Cannot open include file: 'sys/prctl.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\cmTC_9b906.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\cmTC_9b906.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\cmTC_9b906.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\LMMS_HAVE_SYS_PRCTL_H.c(2,10): error C1083: Cannot open include file: 'sys/prctl.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-6splbs\\cmTC_9b906.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.26
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:158 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sched.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xiwie7"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xiwie7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SCHED_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-xiwie7'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ce06e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:31 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\cmTC_ce06e.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_ce06e.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\Debug\\".
+          Creating directory "cmTC_ce06e.dir\\Debug\\cmTC_ce06e.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_ce06e.dir\\Debug\\cmTC_ce06e.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_ce06e.dir\\Debug\\cmTC_ce06e.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ce06e.dir\\Debug\\\\" /Fd"cmTC_ce06e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\LMMS_HAVE_SCHED_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ce06e.dir\\Debug\\\\" /Fd"cmTC_ce06e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\LMMS_HAVE_SCHED_H.c"
+          LMMS_HAVE_SCHED_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\LMMS_HAVE_SCHED_H.c(2,10): error C1083: Cannot open include file: 'sched.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\cmTC_ce06e.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\cmTC_ce06e.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\cmTC_ce06e.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\LMMS_HAVE_SCHED_H.c(2,10): error C1083: Cannot open include file: 'sched.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-xiwie7\\cmTC_ce06e.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:159 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/soundcard.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-y7sd4d"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-y7sd4d"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_SOUNDCARD_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-y7sd4d'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ab1c2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:31 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\cmTC_ab1c2.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_ab1c2.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\Debug\\".
+          Creating directory "cmTC_ab1c2.dir\\Debug\\cmTC_ab1c2.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_ab1c2.dir\\Debug\\cmTC_ab1c2.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_ab1c2.dir\\Debug\\cmTC_ab1c2.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ab1c2.dir\\Debug\\\\" /Fd"cmTC_ab1c2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\LMMS_HAVE_SYS_SOUNDCARD_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ab1c2.dir\\Debug\\\\" /Fd"cmTC_ab1c2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\LMMS_HAVE_SYS_SOUNDCARD_H.c"
+          LMMS_HAVE_SYS_SOUNDCARD_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\LMMS_HAVE_SYS_SOUNDCARD_H.c(2,10): error C1083: Cannot open include file: 'sys/soundcard.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\cmTC_ab1c2.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\cmTC_ab1c2.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\cmTC_ab1c2.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\LMMS_HAVE_SYS_SOUNDCARD_H.c(2,10): error C1083: Cannot open include file: 'sys/soundcard.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-y7sd4d\\cmTC_ab1c2.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.26
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:160 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file soundcard.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-inom7b"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-inom7b"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SOUNDCARD_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-inom7b'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_79de7.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:31 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\cmTC_79de7.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_79de7.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\Debug\\".
+          Creating directory "cmTC_79de7.dir\\Debug\\cmTC_79de7.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_79de7.dir\\Debug\\cmTC_79de7.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_79de7.dir\\Debug\\cmTC_79de7.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_79de7.dir\\Debug\\\\" /Fd"cmTC_79de7.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\LMMS_HAVE_SOUNDCARD_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_79de7.dir\\Debug\\\\" /Fd"cmTC_79de7.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\LMMS_HAVE_SOUNDCARD_H.c"
+          LMMS_HAVE_SOUNDCARD_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\LMMS_HAVE_SOUNDCARD_H.c(2,10): error C1083: Cannot open include file: 'soundcard.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\cmTC_79de7.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\cmTC_79de7.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\cmTC_79de7.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\LMMS_HAVE_SOUNDCARD_H.c(2,10): error C1083: Cannot open include file: 'soundcard.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-inom7b\\cmTC_79de7.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:161 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file fcntl.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-gue62p"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-gue62p"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_FCNTL_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-gue62p'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_85533.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:32 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\cmTC_85533.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_85533.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\Debug\\".
+          Creating directory "cmTC_85533.dir\\Debug\\cmTC_85533.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_85533.dir\\Debug\\cmTC_85533.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_85533.dir\\Debug\\cmTC_85533.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_85533.dir\\Debug\\\\" /Fd"cmTC_85533.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\LMMS_HAVE_FCNTL_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_85533.dir\\Debug\\\\" /Fd"cmTC_85533.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\LMMS_HAVE_FCNTL_H.c"
+          LMMS_HAVE_FCNTL_H.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\Debug\\cmTC_85533.exe" /INCREMENTAL /ILK:"cmTC_85533.dir\\Debug\\cmTC_85533.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-gue62p/Debug/cmTC_85533.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-gue62p/Debug/cmTC_85533.lib" /MACHINE:X64  /machine:x64 cmTC_85533.dir\\Debug\\LMMS_HAVE_FCNTL_H.obj
+          cmTC_85533.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\Debug\\cmTC_85533.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_85533.dir\\Debug\\cmTC_85533.tlog\\unsuccessfulbuild".
+          Touching "cmTC_85533.dir\\Debug\\cmTC_85533.tlog\\cmTC_85533.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-gue62p\\cmTC_85533.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.43
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:162 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file sys/ioctl.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-0g8tcb"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-0g8tcb"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_SYS_IOCTL_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-0g8tcb'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_76fb2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:32 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\cmTC_76fb2.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_76fb2.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\Debug\\".
+          Creating directory "cmTC_76fb2.dir\\Debug\\cmTC_76fb2.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_76fb2.dir\\Debug\\cmTC_76fb2.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_76fb2.dir\\Debug\\cmTC_76fb2.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_76fb2.dir\\Debug\\\\" /Fd"cmTC_76fb2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\LMMS_HAVE_SYS_IOCTL_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_76fb2.dir\\Debug\\\\" /Fd"cmTC_76fb2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\LMMS_HAVE_SYS_IOCTL_H.c"
+          LMMS_HAVE_SYS_IOCTL_H.c
+        C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\LMMS_HAVE_SYS_IOCTL_H.c(2,10): error C1083: Cannot open include file: 'sys/ioctl.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\cmTC_76fb2.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\cmTC_76fb2.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\cmTC_76fb2.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\LMMS_HAVE_SYS_IOCTL_H.c(2,10): error C1083: Cannot open include file: 'sys/ioctl.h': No such file or directory [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-0g8tcb\\cmTC_76fb2.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.27
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:163 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file ctype.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-8weyi0"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-8weyi0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_CTYPE_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-8weyi0'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a9cb0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:33 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\cmTC_a9cb0.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_a9cb0.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\Debug\\".
+          Creating directory "cmTC_a9cb0.dir\\Debug\\cmTC_a9cb0.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_a9cb0.dir\\Debug\\cmTC_a9cb0.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_a9cb0.dir\\Debug\\cmTC_a9cb0.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a9cb0.dir\\Debug\\\\" /Fd"cmTC_a9cb0.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\LMMS_HAVE_CTYPE_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a9cb0.dir\\Debug\\\\" /Fd"cmTC_a9cb0.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\LMMS_HAVE_CTYPE_H.c"
+          LMMS_HAVE_CTYPE_H.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\Debug\\cmTC_a9cb0.exe" /INCREMENTAL /ILK:"cmTC_a9cb0.dir\\Debug\\cmTC_a9cb0.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-8weyi0/Debug/cmTC_a9cb0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-8weyi0/Debug/cmTC_a9cb0.lib" /MACHINE:X64  /machine:x64 cmTC_a9cb0.dir\\Debug\\LMMS_HAVE_CTYPE_H.obj
+          cmTC_a9cb0.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\Debug\\cmTC_a9cb0.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_a9cb0.dir\\Debug\\cmTC_a9cb0.tlog\\unsuccessfulbuild".
+          Touching "cmTC_a9cb0.dir\\Debug\\cmTC_a9cb0.tlog\\cmTC_a9cb0.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-8weyi0\\cmTC_a9cb0.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.44
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:164 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file string.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-5z2n8g"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-5z2n8g"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_STRING_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-5z2n8g'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_dd702.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:33 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\cmTC_dd702.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_dd702.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\Debug\\".
+          Creating directory "cmTC_dd702.dir\\Debug\\cmTC_dd702.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_dd702.dir\\Debug\\cmTC_dd702.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_dd702.dir\\Debug\\cmTC_dd702.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_dd702.dir\\Debug\\\\" /Fd"cmTC_dd702.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\LMMS_HAVE_STRING_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_dd702.dir\\Debug\\\\" /Fd"cmTC_dd702.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\LMMS_HAVE_STRING_H.c"
+          LMMS_HAVE_STRING_H.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\Debug\\cmTC_dd702.exe" /INCREMENTAL /ILK:"cmTC_dd702.dir\\Debug\\cmTC_dd702.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-5z2n8g/Debug/cmTC_dd702.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-5z2n8g/Debug/cmTC_dd702.lib" /MACHINE:X64  /machine:x64 cmTC_dd702.dir\\Debug\\LMMS_HAVE_STRING_H.obj
+          cmTC_dd702.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\Debug\\cmTC_dd702.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_dd702.dir\\Debug\\cmTC_dd702.tlog\\unsuccessfulbuild".
+          Touching "cmTC_dd702.dir\\Debug\\cmTC_dd702.tlog\\cmTC_dd702.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-5z2n8g\\cmTC_dd702.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.43
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:165 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file process.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-sae19o"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-sae19o"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_PROCESS_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-sae19o'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_754f4.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:34 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\cmTC_754f4.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_754f4.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\Debug\\".
+          Creating directory "cmTC_754f4.dir\\Debug\\cmTC_754f4.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_754f4.dir\\Debug\\cmTC_754f4.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_754f4.dir\\Debug\\cmTC_754f4.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_754f4.dir\\Debug\\\\" /Fd"cmTC_754f4.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\LMMS_HAVE_PROCESS_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_754f4.dir\\Debug\\\\" /Fd"cmTC_754f4.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\LMMS_HAVE_PROCESS_H.c"
+          LMMS_HAVE_PROCESS_H.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\Debug\\cmTC_754f4.exe" /INCREMENTAL /ILK:"cmTC_754f4.dir\\Debug\\cmTC_754f4.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-sae19o/Debug/cmTC_754f4.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-sae19o/Debug/cmTC_754f4.lib" /MACHINE:X64  /machine:x64 cmTC_754f4.dir\\Debug\\LMMS_HAVE_PROCESS_H.obj
+          cmTC_754f4.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\Debug\\cmTC_754f4.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_754f4.dir\\Debug\\cmTC_754f4.tlog\\unsuccessfulbuild".
+          Touching "cmTC_754f4.dir\\Debug\\cmTC_754f4.tlog\\cmTC_754f4.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-sae19o\\cmTC_754f4.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.43
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckIncludeFiles.cmake:141 (try_compile)"
+      - "CMakeLists.txt:166 (CHECK_INCLUDE_FILES)"
+    checks:
+      - "Looking for include file locale.h"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-avr91r"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-avr91r"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_LOCALE_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-avr91r'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d3557.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:35 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\cmTC_d3557.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_d3557.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\Debug\\".
+          Creating directory "cmTC_d3557.dir\\Debug\\cmTC_d3557.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_d3557.dir\\Debug\\cmTC_d3557.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_d3557.dir\\Debug\\cmTC_d3557.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d3557.dir\\Debug\\\\" /Fd"cmTC_d3557.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\LMMS_HAVE_LOCALE_H.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d3557.dir\\Debug\\\\" /Fd"cmTC_d3557.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\LMMS_HAVE_LOCALE_H.c"
+          LMMS_HAVE_LOCALE_H.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\Debug\\cmTC_d3557.exe" /INCREMENTAL /ILK:"cmTC_d3557.dir\\Debug\\cmTC_d3557.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-avr91r/Debug/cmTC_d3557.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-avr91r/Debug/cmTC_d3557.lib" /MACHINE:X64  /machine:x64 cmTC_d3557.dir\\Debug\\LMMS_HAVE_LOCALE_H.obj
+          cmTC_d3557.vcxproj -> C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\Debug\\cmTC_d3557.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_d3557.dir\\Debug\\cmTC_d3557.tlog\\unsuccessfulbuild".
+          Touching "cmTC_d3557.dir\\Debug\\cmTC_d3557.tlog\\cmTC_d3557.lastbuildstate".
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-avr91r\\cmTC_d3557.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.44
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckLibraryExists.cmake:78 (try_compile)"
+      - "CMakeLists.txt:169 (check_library_exists)"
+    checks:
+      - "Looking for shm_open in rt"
+    directories:
+      source: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-27vt5a"
+      binary: "C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-27vt5a"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/LMMS-Compiled/cmake/modules"
+    buildResult:
+      variable: "LMMS_HAVE_LIBRT"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-27vt5a'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_94c62.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 12/18/2024 7:45:35 PM.
+        
+        Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\cmTC_94c62.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_94c62.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\Debug\\".
+          Creating directory "cmTC_94c62.dir\\Debug\\cmTC_94c62.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_94c62.dir\\Debug\\cmTC_94c62.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_94c62.dir\\Debug\\cmTC_94c62.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=shm_open /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_94c62.dir\\Debug\\\\" /Fd"cmTC_94c62.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\CheckFunctionExists.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=shm_open /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_94c62.dir\\Debug\\\\" /Fd"cmTC_94c62.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\CheckFunctionExists.c"
+          CheckFunctionExists.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\Debug\\cmTC_94c62.exe" /INCREMENTAL /ILK:"cmTC_94c62.dir\\Debug\\cmTC_94c62.ilk" /NOLOGO rt.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-27vt5a/Debug/cmTC_94c62.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/LMMS-Compiled/CMakeFiles/CMakeScratch/TryCompile-27vt5a/Debug/cmTC_94c62.lib" /MACHINE:X64  /machine:x64 cmTC_94c62.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'rt.lib' [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\cmTC_94c62.vcxproj]
+        Done Building Project "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\cmTC_94c62.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\cmTC_94c62.vcxproj" (default target) (1) ->
+        (Link target) -> 
+          LINK : fatal error LNK1104: cannot open file 'rt.lib' [C:\\LMMS-Compiled\\CMakeFiles\\CMakeScratch\\TryCompile-27vt5a\\cmTC_94c62.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:00.35
+        
+      exitCode: 1
+...

@@ -115,6 +115,8 @@ public:
 		return false;
 	}
 
+	void ddm_updateDeviceList();
+
 
 private:// slots:
 	void updateDeviceList();

@@ -72,6 +72,7 @@ protected slots:
 	void openInPianoRoll();
 	void setGhostInPianoRoll();
 	void setGhostInAutomationEditor();
+	void generateLeitmotif();
 
 	void resetName();
 	void changeName();

@@ -56,6 +56,9 @@ void MidiClient::applyPortName( MidiPort* )
 }
 
 
+void MidiClient::ddm_updateDeviceList()
+{
+}
 
 
 void MidiClient::addPort( MidiPort* port )

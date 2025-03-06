@@ -26,6 +26,14 @@
 #include "MidiClipView.h"
 
 
+#include <QCoreApplication>
+#include <QProcess>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
+#include "DataFile.h"
+#include "TextFloat.h"
+
 #include <algorithm>
 #include <cmath>
 #include <QApplication>
@@ -212,6 +220,12 @@ void MidiClipView::constructContextMenu( QMenu * _cm )
 
 	_cm->insertSeparator(_cm->actions()[3]);
 	_cm->addSeparator();
+
+	_cm->addAction( embed::getIconPixmap( "piano" ),
+			tr( "Generate leitmotif" ), this, SLOT(generateLeitmotif()));
+
+	_cm->addAction( embed::getIconPixmap( "piano" ),
+			tr( "Rootify notes" ), m_clip, SLOT(rootifyNotes()));
 
 	_cm->addAction( embed::getIconPixmap( "edit_erase" ),
 			tr( "Clear all notes" ), m_clip, SLOT(clear()));
@@ -672,6 +686,43 @@ void MidiClipView::paintEvent( QPaintEvent * )
 	}
 
 	painter.drawPixmap( 0, 0, m_paintPixmap );
+}
+
+void MidiClipView::generateLeitmotif() {
+	const QString command = "C:\\Projects\\JavaScript\\LeitmotifGenerator\\converter.bat";
+	const QString filePath = "C:\\Projects\\LMMS\\projects\\Leitmotif Generator\\Autogenerate.xpt";
+
+    // Create a QProcess to run the command
+    QProcess process;
+    process.start(command);
+
+    // Wait for the process to finish
+    if (!process.waitForFinished()) {
+        qWarning() << "Command failed to execute:" << process.errorString();
+        return;
+    }
+
+    // Check if the command was successful
+    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+        qWarning() << "Command exited with errors.";
+        return;
+    }
+
+	DataFile dataFile(filePath);
+
+	if (dataFile.head().isNull())
+	{
+		return;
+	}
+
+	TimePos pos = m_clip->startPosition(); // Backup position in timeline.
+
+	m_clip->loadSettings(dataFile.content());
+	m_clip->movePosition(pos);
+
+	TextFloat::displayMessage(tr("Leitmotif generated successfully"),
+		tr("awesome!").arg(filePath),
+		embed::getIconPixmap("project_import"), 4000);
 }
 
 

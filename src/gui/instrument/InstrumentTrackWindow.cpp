@@ -329,8 +329,6 @@ void InstrumentTrackWindow::setInstrumentTrackView( InstrumentTrackView* view )
 }
 
 
-
-
 void InstrumentTrackWindow::modelChanged()
 {
 	m_track = castModel<InstrumentTrack>();

@@ -57,9 +57,9 @@ class ControllerRackView;
 }
 
 
-const bpm_t MinTempo = 10;
+const bpm_t MinTempo = 0;
 const bpm_t DefaultTempo = 140;
-const bpm_t MaxTempo = 999;
+const bpm_t MaxTempo = 9999;
 const tick_t MaxSongLength = 9999 * DefaultTicksPerBar;
 
 
@@ -374,6 +374,8 @@ public:
 	void setKeymap(unsigned int index, std::shared_ptr<Keymap> newMap);
 
 	const std::string& syncKey() const noexcept { return m_vstSyncController.sharedMemoryKey(); }
+	
+	void setPlayPos( tick_t ticks, PlayMode playMode );
 
 public slots:
 	void playSong();
@@ -433,8 +435,6 @@ private:
 		return getPlayPos(m_playMode).getTicks() * Engine::framesPerTick() +
 			getPlayPos(m_playMode).currentFrame();
 	}
-
-	void setPlayPos( tick_t ticks, PlayMode playMode );
 
 	void saveControllerStates( QDomDocument & doc, QDomElement & element );
 	void restoreControllerStates( const QDomElement & element );

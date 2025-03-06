@@ -31,6 +31,10 @@
 #include <QAction>
 #include <QShortcut>
 #include <QCloseEvent>
+#include <MidiClip.h>
+
+#include "GuiApplication.h"
+#include "PianoRoll.h"
 
 
 namespace lmms::gui
@@ -75,6 +79,37 @@ void Editor::togglePlayStop()
 	else
 		play();
 }
+	
+void Editor::toggleSongPlayStop()
+{
+	// DDM added function.
+	// Function for playing patterns with Qt::CTRL + Qt::Key_Space.
+	
+	bool updatePattern = false;
+	
+	if (Engine::getSong()->isPlaying()) {
+		if(Engine::getSong()->playMode() == Song::PlayMode::Song) {
+			stop();
+		} else {
+			Engine::getSong()->playSong();
+			updatePattern = true;
+		}
+	}
+	
+	else {
+		Engine::getSong()->playSong();
+		updatePattern = true;
+	}
+	
+	if(updatePattern) {
+		Song * song = Engine::getSong();
+		PianoRollWindow * piano_roll_window = getGUI()->pianoRoll();
+		const MidiClip * midi = piano_roll_window->currentMidiClip();
+		
+		tick_t t = midi->startPosition().getTicks();
+		song->setPlayPos(t, Song::PlayMode::Song);
+	}
+}
 
 void Editor::togglePause()
 {
@@ -116,7 +151,8 @@ Editor::Editor(bool record, bool stepRecord) :
 	connect(m_toggleStepRecordingAction, SIGNAL(triggered()), this, SLOT(toggleStepRecording()));
 	connect(m_stopAction, SIGNAL(triggered()), this, SLOT(stop()));
 	new QShortcut(Qt::Key_Space, this, SLOT(togglePlayStop()));
-	new QShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Space), this, SLOT(togglePause()));
+	new QShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Space), this, SLOT(toggleSongPlayStop()));
+	new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Space), this, SLOT(togglePause()));
 	new QShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F11), this, SLOT(toggleMaximize()));
 
 	// Add actions to toolbar

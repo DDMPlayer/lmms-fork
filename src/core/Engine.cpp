@@ -90,8 +90,6 @@ void Engine::init( bool renderOnly )
 }
 
 
-
-
 void Engine::destroy()
 {
 	s_projectJournal->stopAllJournalling();

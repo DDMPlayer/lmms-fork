@@ -91,6 +91,7 @@ ADD_LIBRARY(lmmsobjs OBJECT
 	${LMMS_SRCS}
 	${LMMS_INCLUDES}
 	${LMMS_RCC_OUT}
+        core/LatteScriptEngine.cpp
 )
 
 GENERATE_EXPORT_HEADER(lmmsobjs

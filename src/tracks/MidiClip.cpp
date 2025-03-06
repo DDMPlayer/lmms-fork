@@ -33,6 +33,7 @@
 #include "MidiClipView.h"
 #include "PatternStore.h"
 #include "PianoRoll.h"
+#include "TimePos.h"
 
 
 
@@ -85,6 +86,14 @@ MidiClip::MidiClip( const MidiClip& other ) :
 
 MidiClip::~MidiClip()
 {
+	auto pRoll = gui::getGUI()->pianoRoll();
+	printf("midiClip is being deleted.\n");
+	if(pRoll->currentMidiClip() == this) {
+		printf("Detected midiClip that requires deleting.\n");
+		pRoll->setCurrentMidiClip(nullptr);
+	}
+
+
 	emit destroyedMidiClip( this );
 
 	for (const auto& note : m_notes)
@@ -594,6 +603,31 @@ void MidiClip::changeTimeSignature()
 	m_steps = std::max<tick_t>(TimePos::stepsPerBar(),
 				last_pos.getBar() * TimePos::stepsPerBar());
 	updateLength();
+}
+
+void MidiClip::rootifyNotes()
+{
+	addJournalCheckPoint();
+
+	NoteVector notes = m_notes;
+	NoteVector allowedNotes;
+
+	for( Note* n : notes )
+	{
+		TimePos pos = n->pos();
+
+		if(allowedNotes.size() == pos.getBar())
+		{
+			n->setPos(TimePos(pos.getBar() * TimePos::ticksPerBar()));
+			n->setLength(TimePos::ticksPerBar());
+			allowedNotes.push_back(n);
+			continue;
+		}
+
+		removeNote( n );
+	}
+
+	Engine::getSong()->setModified();
 }
 
 

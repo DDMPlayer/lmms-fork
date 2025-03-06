@@ -163,7 +163,8 @@ protected:
 	{
 		Both,
 		Pos,
-		Length
+		Length,
+		Pitch
 	};
 
 	enum class SemiToneMarkerAction
@@ -173,7 +174,8 @@ protected:
 		MarkAllOctaveSemiTones,
 		MarkCurrentScale,
 		MarkCurrentChord,
-		CopyAllNotesOnKey
+		CopyAllNotesOnKey,
+		MarkBasedOnSelection
 	};
 
 	void keyPressEvent( QKeyEvent * ke ) override;
@@ -244,6 +246,7 @@ protected slots:
 	void selectRegionFromPixels( int xStart, int xEnd );
 
 	void clearGhostClip();
+	void humanizeNotes();
 	void glueNotes();
 	void fitNoteLengths(bool fill);
 	void constrainNoteLengths(bool constrainMax);

@@ -44,7 +44,7 @@ namespace lmms
 {
 
 
-#ifdef LMMS_BUILD_WIN32
+#ifdef LMMS_BUILD_WIN64
 	QStringList nameFilters("*.dll");
 #else
 	QStringList nameFilters("lib*.so");
@@ -159,17 +159,24 @@ void PluginFactory::discoverPlugins()
 
 	// Cheap dependency handling: zynaddsubfx needs ZynAddSubFxCore. By loading
 	// all libraries twice we ensure that libZynAddSubFxCore is found.
-	for (const QFileInfo& file : files)
-	{
-		QLibrary(file.absoluteFilePath()).load();
+	for (int i = 0; i < 5; i++) {
+		for (const QFileInfo& file : files)
+		{
+			QLibrary(file.absoluteFilePath()).load();
+		}
 	}
-
-	for (const QFileInfo& file : files)
+	
+	for (int i = 0; i < files.size(); i++)
 	{
+		const QFileInfo& file = files.values()[i];
 		auto library = std::make_shared<QLibrary>(file.absoluteFilePath());
 		if (! library->load()) {
 			m_errors[file.baseName()] = library->errorString();
 			qWarning("%s", library->errorString().toLocal8Bit().data());
+			qWarning("%s", file.baseName().toLocal8Bit().data());
+			if(file.baseName() == QString("sf2player") || file.baseName() == QString("libfluidsynth-3")) {
+				qApp->quit();
+			}
 			continue;
 		}
 

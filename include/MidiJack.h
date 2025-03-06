@@ -55,6 +55,8 @@ public:
 	MidiJack();
 	~MidiJack() override;
 
+	void ddm_updateDeviceList();
+
 	jack_client_t* jackClient();
 
 	static QString probeDevice();

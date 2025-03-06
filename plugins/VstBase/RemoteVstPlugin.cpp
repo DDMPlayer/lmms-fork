@@ -1670,7 +1670,7 @@ int RemoteVstPlugin::updateInOutCount()
 		debugMessage( "Plugin requested I/O change from processing "
 			"thread. Request denied; stability may suffer.\n" );
 		return 0;
-	}
+}
 
 	lockShm();
 

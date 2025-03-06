@@ -37,6 +37,9 @@
 #include "NotePlayHandle.h"
 #include "ConfigManager.h"
 #include "SamplePlayHandle.h"
+#include "InstrumentTrack.h"
+#include "PatternStore.h"
+#include "TrackContainer.h" // For TrackContainer::TrackList typedef
 
 // platform-specific audio-interface-classes
 #include "AudioAlsa.h"
@@ -200,6 +203,41 @@ void AudioEngine::initDevices()
 	}
 	// Loading audio device may have changed the sample rate
 	emit sampleRateChanged();
+}
+
+
+
+
+void AudioEngine::ddm_reloadMidiDevices()
+{
+	printf("Reached AE reload\n");
+	
+    // Cast m_midiClient to MidiWinMM
+    MidiWinMM* midiClientWinMM = dynamic_cast<MidiWinMM*>(m_midiClient);
+    
+    // Check if the cast was successful
+    if (midiClientWinMM) {
+        midiClientWinMM->ddm_updateDeviceList();
+    } else {
+        printf("Failed to cast m_midiClient to MidiWinMM\n");
+    }
+
+    printf("Starting instrument list\n");
+	TrackContainer::TrackList tracks;
+
+	auto& songTracks = Engine::getSong()->tracks();
+	auto& patternStoreTracks = Engine::patternStore()->tracks();
+	tracks.insert(tracks.end(), songTracks.begin(), songTracks.end());
+	tracks.insert(tracks.end(), patternStoreTracks.begin(), patternStoreTracks.end());tracks.insert(tracks.end(), songTracks.begin(), songTracks.end());
+
+	for( Track* t : tracks )
+	{
+		if( t->type() == Track::Type::Instrument )
+		{
+			auto inst = dynamic_cast<InstrumentTrack*>(t);
+			inst->ddm_reloadMidiport();
+		}
+	}
 }
 
 

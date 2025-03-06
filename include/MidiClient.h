@@ -48,6 +48,8 @@ public:
 	MidiClient() = default;
 	virtual ~MidiClient();
 
+	void ddm_updateDeviceList();
+
 	// to be implemented by sub-classes
 	virtual void processOutEvent( const MidiEvent & _me,
 						const TimePos & _time,

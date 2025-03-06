@@ -91,6 +91,7 @@ public:
 		return m_mode;
 	}
 
+	void ddm_updateMidi();
 	void setMode( Mode mode );
 
 	bool isInputEnabled() const

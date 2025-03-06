@@ -150,6 +150,7 @@ public slots:
 
 	void emptySlot();
 	void createNewProject();
+	void openNextProject();
 	void openProject();
 	bool saveProject();
 	bool saveProjectAs();
@@ -178,6 +179,7 @@ public slots:
 
 private slots:
 	void onExportProjectMidi();
+	void ddm_reloadMidi();
 
 protected:
 	void closeEvent( QCloseEvent * _ce ) override;

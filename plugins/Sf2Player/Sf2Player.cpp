@@ -1142,6 +1142,8 @@ void Sf2InstrumentView::modelChanged()
 
 void Sf2InstrumentView::updateFilename()
 {
+	printf("Test");
+	
 	auto i = castModel<Sf2Instrument>();
 	QFontMetrics fm( m_filenameLabel->font() );
 	QString file = i->m_filename.endsWith( ".sf2", Qt::CaseInsensitive ) ?

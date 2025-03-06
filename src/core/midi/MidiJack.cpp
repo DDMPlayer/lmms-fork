@@ -155,6 +155,9 @@ MidiJack::~MidiJack()
 	}
 }
 
+
+void MidiJack::ddm_updateDeviceList() {}
+
 jack_client_t* MidiJack::jackClient()
 {
 	if( m_jackAudio == nullptr && m_jackClient == nullptr)

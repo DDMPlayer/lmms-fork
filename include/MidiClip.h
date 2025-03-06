@@ -119,6 +119,7 @@ public slots:
 	void cloneSteps();
 	void removeSteps();
 	void clear();
+	void rootifyNotes();
 
 protected:
 	void updatePatternTrack();

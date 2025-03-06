@@ -429,6 +429,13 @@ void MidiPort::updateOutputProgram()
 }
 
 
+void MidiPort::ddm_updateMidi()
+{
+	updateReadablePorts();
+	updateWritablePorts();
+}
+
+
 
 
 void MidiPort::invalidateCilent()

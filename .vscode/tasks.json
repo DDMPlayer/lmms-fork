@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run build-debug.bat",
+            "type": "shell",
+            "command": "D:\\Programas\\LMMS_compiled\\lmms\\build-debug.bat",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Runs the build-debug.bat file."
+        }
+    ]
+}
