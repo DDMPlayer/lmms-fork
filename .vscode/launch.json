@@ -5,11 +5,11 @@
             "name": "Call build-debug.bat",
             "type": "node",
             "request": "launch",
-            "program": "D:\\Programas\\LMMS_compiled\\lmms\\build-debug.bat",
+            "program": "C:\\LMMS-Compiled\\build-debug.bat",
             "preLaunchTask": "Run build-debug.bat",
             "windows": {
                 "runtimeExecutable": "cmd.exe",
-                "runtimeArgs": ["/c", "D:\\Programas\\LMMS_compiled\\lmms\\build-debug.bat"]
+                "runtimeArgs": ["/c", "C:\\LMMS-Compiled\\build-debug.bat"]
             }
         }
     ]

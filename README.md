@@ -25,6 +25,13 @@
 	</p>
 </div>
 
+What is this fork?
+--------------
+
+This fork is a bundle of fixes for tiny issues/idiosyncrasies I have with the base LMMS program. This isn't to say that the base version is in any way bad, quite the opposite, the program is wonderful and I'm quite impressed with what people have achieved, a round of applause for the contributors for the LMMS repository!
+
+In sight of how this is a version mostly dedicated to issues *I* have, most fixes and/or approaches here aren't taken with the public in mind. Therefore, function names may be odd at times, hacky solutions may be used and absolute paths to files present only on my computer may also be referenced. These *shouldn't* break all compatibility, but if you're looking to implement all changes on your machine, you're probably gonna need to edit a few things.
+
 What is LMMS?
 --------------
 

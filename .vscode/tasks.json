@@ -4,7 +4,7 @@
         {
             "label": "Run build-debug.bat",
             "type": "shell",
-            "command": "D:\\Programas\\LMMS_compiled\\lmms\\build-debug.bat",
+            "command": "C:\\LMMS-Compiled\\build-debug.bat",
             "group": {
                 "kind": "build",
                 "isDefault": true
