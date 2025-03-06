@@ -85,6 +85,8 @@ const std::vector<DataFile::UpgradeMethod> DataFile::UPGRADE_METHODS = {
 	&DataFile::upgrade_sampleAndHold    ,   &DataFile::upgrade_midiCCIndexing,
 	&DataFile::upgrade_loopsRename      ,   &DataFile::upgrade_noteTypes,
 	&DataFile::upgrade_fixCMTDelays     ,   &DataFile::upgrade_fixBassLoopsTypo,
+	&DataFile::findProblematicLadspaPlugins,
+	&DataFile::upgrade_noHiddenAutomationTracks
 };
 
 // Vector of all versions that have upgrade routines.
@@ -352,7 +354,7 @@ bool DataFile::writeFile(const QString& filename, bool withResources)
 		if (QDir(bundleDir).exists())
 		{
 			showError(SongEditor::tr("Operation denied"),
-				SongEditor::tr("A bundle folder with that name already eists on the "
+				SongEditor::tr("A bundle folder with that name already exists on the "
 				"selected path. Can't overwrite a project bundle. Please select a different "
 				"name."));
 
@@ -413,7 +415,7 @@ bool DataFile::writeFile(const QString& filename, bool withResources)
 	if (!outfile.commit())
 	{
 		showError(SongEditor::tr("Could not write file"),
-			SongEditor::tr("An unknown error has occured and the file could not be saved."));
+			SongEditor::tr("An unknown error has occurred and the file could not be saved."));
 		return false;
 	}
 
@@ -1072,7 +1074,6 @@ void DataFile::upgrade_0_4_0_rc2()
 	}
 }
 
-
 void DataFile::upgrade_1_0_99()
 {
 	jo_id_t last_assigned_id = 0;
@@ -1184,7 +1185,7 @@ static void upgradeElement_1_2_0_rc2_42( QDomElement & el )
 		int syncmode = el.attribute( "syncmode" ).toInt();
 		QStringList names;
 		QDomNamedNodeMap atts = el.attributes();
-		for( uint i = 0; i < atts.length(); i++ )
+		for (auto i = 0; i < atts.length(); i++)
 		{
 			QString name = atts.item( i ).nodeName();
 			if( name.endsWith( "_numerator" ) )
@@ -1638,6 +1639,51 @@ void DataFile::upgrade_1_3_0()
 	}
 }
 
+void DataFile::upgrade_noHiddenAutomationTracks()
+{
+	// convert global automation tracks to non-hidden
+	QDomElement song = firstChildElement("lmms-project")
+		.firstChildElement("song");
+	QDomElement trackContainer = song.firstChildElement("trackcontainer");
+	QDomElement globalAutomationTrack = song.firstChildElement("track");
+	if (!globalAutomationTrack.isNull()
+		&& globalAutomationTrack.attribute("type").toInt() == static_cast<int>(Track::Type::HiddenAutomation))
+	{
+		// global automation clips
+		QDomNodeList automationClips = globalAutomationTrack.elementsByTagName("automationclip");
+		QList<QDomNode> tracksToInsert;
+		for (int i = 0; i < automationClips.length(); ++i)
+		{
+			QDomElement automationClip = automationClips.item(i).toElement();
+			// If automationClip has time nodes, move it to trackcontainer
+			// There are times when an <object> node is present without an
+			// object with the same ID in the file, so we ignore that node
+			if (automationClip.elementsByTagName("time").length() > 1)
+			{
+				QDomElement automationTrackForClip = createElement("track");
+				automationTrackForClip.setAttribute("muted", QString::number(false));
+				automationTrackForClip.setAttribute("solo", QString::number(false));
+				automationTrackForClip.setAttribute("type",
+					QString::number(static_cast<int>(Track::Type::Automation)));
+				automationTrackForClip.setAttribute("name",
+					automationClip.attribute("name", "Automation Track"));
+				QDomElement at = createElement("automationtrack");
+				automationTrackForClip.appendChild(at);
+				automationTrackForClip.appendChild(automationClips.item(i).cloneNode());
+				tracksToInsert.prepend(automationTrackForClip); // To preserve orders
+			}
+		}
+
+		// Insert the tracks at the beginning of trackContainer, preserving their order
+		for (const auto& track : tracksToInsert) {
+			trackContainer.insertBefore(track, trackContainer.firstChild());
+		}
+
+		// Remove the track object just in case
+		globalAutomationTrack.parentNode().removeChild(globalAutomationTrack);
+	}
+}
+
 void DataFile::upgrade_noHiddenClipNames()
 {
 	QDomNodeList tracks = elementsByTagName("track");
@@ -1976,6 +2022,39 @@ void DataFile::upgrade_midiCCIndexing()
 				element.setAttribute(attrName, cc - 1);
 			}
 		}
+	}
+}
+
+void DataFile::findProblematicLadspaPlugins()
+{
+	// This is not an upgrade but a check for potentially problematic LADSPA
+	// controls. See #5738 for more details.
+
+	const QDomNodeList ladspacontrols = elementsByTagName("ladspacontrols");
+
+	uint numberOfProblematicPlugins = 0;
+
+	for (int i = 0; i < ladspacontrols.size(); ++i)
+	{
+		const QDomElement ladspacontrol = ladspacontrols.item(i).toElement();
+
+		const auto attributes = ladspacontrol.attributes();
+		for (int j = 0; j < attributes.length(); ++j)
+		{
+			const auto attribute = attributes.item(j);
+			const auto name = attribute.nodeName();
+			if (name != "ports" && name.startsWith("port"))
+			{
+				++numberOfProblematicPlugins;
+				break;
+			}
+		}
+	}
+
+	if (numberOfProblematicPlugins > 0)
+	{
+		QMessageBox::warning(nullptr, QObject::tr("LADSPA plugins"),
+			QObject::tr("The project contains %1 LADSPA plugin(s) which might have not been restored correctly! Please check the project.").arg(numberOfProblematicPlugins));
 	}
 }
 

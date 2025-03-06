@@ -133,6 +133,8 @@ private:
 	void upgrade_noteTypes();
 	void upgrade_fixCMTDelays();
 	void upgrade_fixBassLoopsTypo();
+	void findProblematicLadspaPlugins();
+	void upgrade_noHiddenAutomationTracks();
 
 	// List of all upgrade methods
 	static const std::vector<UpgradeMethod> UPGRADE_METHODS;

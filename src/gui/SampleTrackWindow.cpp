@@ -92,7 +92,7 @@ SampleTrackWindow::SampleTrackWindow(SampleTrackView * tv) :
 	basicControlsLayout->setVerticalSpacing(0);
 	basicControlsLayout->setContentsMargins(0, 0, 0, 0);
 
-	QString labelStyleSheet = "font-size: 6pt;";
+	QString labelStyleSheet = "font-size: 10px;";
 	Qt::Alignment labelAlignment = Qt::AlignHCenter | Qt::AlignTop;
 	Qt::Alignment widgetAlignment = Qt::AlignHCenter | Qt::AlignCenter;
 
@@ -139,7 +139,7 @@ SampleTrackWindow::SampleTrackWindow(SampleTrackView * tv) :
 
 	generalSettingsLayout->addLayout(basicControlsLayout);
 
-	m_effectRack = new EffectRackView(tv->model()->audioPort()->effects());
+	m_effectRack = new EffectRackView(tv->model()->audioBusHandle()->effects());
 	m_effectRack->setFixedSize(EffectRackView::DEFAULT_WIDTH, 242);
 
 	vlayout->addWidget(generalSettingsWidget);

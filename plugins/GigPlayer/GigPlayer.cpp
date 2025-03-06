@@ -323,7 +323,7 @@ void GigInstrument::playNote( NotePlayHandle * _n, SampleFrame* )
 void GigInstrument::play( SampleFrame* _working_buffer )
 {
 	const fpp_t frames = Engine::audioEngine()->framesPerPeriod();
-	const int rate = Engine::audioEngine()->outputSampleRate();
+	const auto rate = Engine::audioEngine()->outputSampleRate();
 
 	// Initialize to zeros
 	std::memset( &_working_buffer[0][0], 0, DEFAULT_CHANNELS * frames * sizeof( float ) );
@@ -1101,9 +1101,7 @@ GigSample::GigSample( gig::Sample * pSample, gig::DimensionRegion * pDimRegion,
 		if( region->PitchTrack == true )
 		{
 			// Calculate what frequency the provided sample is
-			sampleFreq = 440.0 * powf( 2, 1.0 / 12 * (
-						1.0 * region->UnityNote - 69 -
-						0.01 * region->FineTune ) );
+			sampleFreq = 440.0f * std::exp2((region->UnityNote - 69 - region->FineTune * 0.01) / 12.0f);
 			freqFactor = sampleFreq / desiredFreq;
 		}
 
@@ -1216,7 +1214,7 @@ bool GigSample::convertSampleRate( SampleFrame & oldBuf, SampleFrame & newBuf,
 		return false;
 	}
 
-	if( src_data.output_frames_gen > 0 && src_data.output_frames_gen < newSize )
+	if (src_data.output_frames_gen > 0 && static_cast<f_cnt_t>(src_data.output_frames_gen) < newSize)
 	{
 		qCritical() << "GigInstrument: not enough frames, wanted"
 			<< newSize << "generated" << src_data.output_frames_gen;
@@ -1342,7 +1340,7 @@ float ADSR::value()
 	{
 		// Maybe not the best way of doing this, but it appears to be about right
 		// Satisfies f(0) = sustain and f(releaseLength) = very small
-		amplitude = ( sustain + 1e-3 ) * expf( -5.0 / releaseLength * releasePosition ) - 1e-3;
+		amplitude = (sustain + 1e-3) * std::exp(-5.0f / releaseLength * releasePosition) - 1e-3;
 
 		// Don't have an infinite exponential decay
 		if( amplitude <= 0 || releasePosition >= releaseLength )

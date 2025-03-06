@@ -46,7 +46,7 @@ include(StaticDependencies)
 
 STRING(TOUPPER          "${CMAKE_PROJECT_NAME}" PROJECT_NAME_UCASE)
 
-SET(PROJECT_YEAR 2024)
+SET(PROJECT_YEAR 2025)
 
 SET(PROJECT_AUTHOR      "LMMS Developers")
 SET(PROJECT_URL         "https://lmms.io")
@@ -102,7 +102,10 @@ option(WANT_DEBUG_ASAN	"Enable AddressSanitizer" OFF)
 option(WANT_DEBUG_TSAN	"Enable ThreadSanitizer" OFF)
 option(WANT_DEBUG_MSAN	"Enable MemorySanitizer" OFF)
 option(WANT_DEBUG_UBSAN	"Enable UndefinedBehaviorSanitizer" OFF)
+option(WANT_DEBUG_GPROF	"Enable gprof profiler" OFF)
 OPTION(BUNDLE_QT_TRANSLATIONS	"Install Qt translation files for LMMS" OFF)
+option(WANT_DEBUG_CPACK "Show detailed logs for packaging commands" OFF)
+option(WANT_CPACK_TARBALL "Request CPack to create a tarball instead of an installer" OFF)
 
 
 IF(LMMS_BUILD_APPLE)
@@ -170,7 +173,7 @@ check_library_exists(rt shm_open "" LMMS_HAVE_LIBRT)
 
 LIST(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
-FIND_PACKAGE(Qt5 5.9.0 COMPONENTS Core Gui Widgets Xml REQUIRED)
+FIND_PACKAGE(Qt5 5.9.0 COMPONENTS Core Gui Widgets Xml Svg REQUIRED)
 FIND_PACKAGE(Qt5 COMPONENTS LinguistTools QUIET)
 
 include_directories(SYSTEM
@@ -185,6 +188,7 @@ SET(QT_LIBRARIES
 	Qt5::Gui
 	Qt5::Widgets
 	Qt5::Xml
+	Qt5::Svg
 )
 
 IF(LMMS_BUILD_LINUX AND WANT_VST)
@@ -236,29 +240,28 @@ if(LMMS_BUILD_APPLE)
 endif()
 find_package(Perl)
 
-IF(WANT_LV2)
-	IF(PKG_CONFIG_FOUND)
-		PKG_CHECK_MODULES(LV2 lv2)
-		PKG_CHECK_MODULES(LILV lilv-0)
-	ENDIF()
-	IF(NOT LV2_FOUND AND NOT LILV_FOUND)
-		UNSET(LV2_FOUND CACHE)
-		UNSET(LILV_FOUND CACHE)
-		FIND_PACKAGE(LV2 CONFIG)
-		FIND_PACKAGE(LILV CONFIG)
-		IF(LILV_FOUND)
-			SET(LILV_LIBRARIES "lilv::lilv")
-		ENDIF()
-	ENDIF()
-	IF(LV2_FOUND AND LILV_FOUND)
-		SET(LMMS_HAVE_LV2 TRUE)
-		SET(STATUS_LV2 "OK")
-	ELSE()
-		SET(STATUS_LV2 "not found, install it or set PKG_CONFIG_PATH appropriately")
-	ENDIF()
-ELSE(WANT_LV2)
-	SET(STATUS_LV2 "not built as requested")
-ENDIF(WANT_LV2)
+if(WANT_LV2)
+	if(PKG_CONFIG_FOUND)
+		pkg_check_modules(LV2 lv2)
+	endif()
+
+	find_package(Lilv)
+	if(Lilv_FOUND)
+		set(LILV_LIBRARIES Lilv::lilv)
+	endif()
+
+	# Ensure both dependencies are found
+	if(NOT LV2_FOUND)
+		set(STATUS_LV2 "not found, install lv2 or set PKG_CONFIG_PATH appropriately")
+	elseif(NOT Lilv_FOUND)
+		set(STATUS_LV2 "not found, install lilv or set PKG_CONFIG_PATH appropriately")
+	else()
+		set(LMMS_HAVE_LV2 TRUE)
+		set(STATUS_LV2 "OK")
+	endif()
+else()
+	set(STATUS_LV2 "not built as requested")
+endif()
 
 IF(WANT_SUIL)
 	IF(PKG_CONFIG_FOUND)
@@ -266,6 +269,7 @@ IF(WANT_SUIL)
 		IF(SUIL_FOUND)
 			SET(LMMS_HAVE_SUIL TRUE)
 			SET(STATUS_SUIL "OK")
+			find_package(SuilModules)
 		ELSE()
 			SET(STATUS_SUIL "not found, install it or set PKG_CONFIG_PATH appropriately")
 		ENDIF()
@@ -338,34 +342,11 @@ IF(WANT_SDL)
 	FIND_PACKAGE(SDL2)
 	IF(SDL2_FOUND)
 		SET(LMMS_HAVE_SDL TRUE)
-		SET(LMMS_HAVE_SDL2 TRUE)
-		SET(STATUS_SDL "OK, using SDL2")
+		SET(STATUS_SDL "OK")
 		SET(SDL2_LIBRARY "SDL2::SDL2")
-		SET(SDL_INCLUDE_DIR "")
-		SET(SDL_LIBRARY "")
 	ELSE()
+		SET(STATUS_SDL "not found, please install libsdl2-dev (or similar) if you require SDL support")
 		SET(SDL2_LIBRARY "")
-	ENDIF()
-ENDIF()
-
-# fallback to SDL1
-IF(WANT_SDL AND NOT LMMS_HAVE_SDL2)
-	# Fallback to SDL1.2
-	SET(SDL_BUILDING_LIBRARY TRUE)
-	FIND_PACKAGE(SDL)
-	IF(SDL_FOUND)
-		SET(LMMS_HAVE_SDL TRUE)
-		SET(STATUS_SDL "OK, using SDL1.2")
-		# fix mingw since 53abd65
-		IF(NOT SDL_INCLUDE_DIR)
-			SET(SDL_INCLUDE_DIR "${CMAKE_FIND_ROOT_PATH}/include")
-		ENDIF()
-
-	ELSE()
-		SET(STATUS_SDL "not found, please install libsdl2-dev (or similar) "
-			"if you require SDL support")
-		SET(SDL_INCLUDE_DIR "")
-		SET(SDL_LIBRARY "")
 	ENDIF()
 ENDIF()
 
@@ -627,71 +608,19 @@ ELSE()
 	SET (STATUS_DEBUG_FPE "Disabled")
 ENDIF(WANT_DEBUG_FPE)
 
+if(WANT_DEBUG_CPACK)
+	if((LMMS_BUILD_WIN32 AND CMAKE_VERSION VERSION_LESS "3.19") OR WANT_CPACK_TARBALL)
+		set(STATUS_DEBUG_CPACK "Wanted but disabled due to unsupported configuration")
+	else()
+		set(CPACK_DEBUG TRUE)
+		set(STATUS_DEBUG_CPACK "Enabled")
+	endif()
+else()
+	set(STATUS_DEBUG_CPACK "Disabled")
+endif()
+
 # check for libsamplerate
 FIND_PACKAGE(Samplerate 0.1.8 MODULE REQUIRED)
-
-# Shim the SYSTEM property for older CMake versions
-if(CMAKE_VERSION VERSION_LESS "3.25")
-	define_property(TARGET
-		PROPERTY SYSTEM
-		INHERITED
-		BRIEF_DOCS "Shim of built-in SYSTEM property for CMake versions less than 3.25"
-		FULL_DOCS "Non-functional, but allows the property to be inherited properly."
-			"See the CMake documentation at https://cmake.org/cmake/help/latest/prop_tgt/SYSTEM.html."
-	)
-endif()
-
-# Add warning and error flags
-option(USE_WERROR "Treat compiler warnings as errors" OFF)
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-	set(COMPILE_ERROR_FLAGS
-		"-Wall" # Enable most warnings by default
-		"-Werror=unused-function" # Unused functions are an error
-		# TODO: Fix the code and remove the following:
-		"-Wno-sign-compare" # Permit comparisons between signed and unsigned integers
-		"-Wno-strict-overflow" # Permit optimisations assuming no signed overflow
-	)
-	set(THIRD_PARTY_COMPILE_ERROR_FLAGS
-		"-w" # Disable all warnings
-	)
-
-	# Due to a regression in gcc-4.8.X, we need to disable array-bounds check
-	# TODO: Is this still necessary?
-	if(CMAKE_COMPILER_IS_GNUCXX)
-		list(APPEND COMPILE_ERROR_FLAGS
-			"-Wno-array-bounds" # Permit out-of-bounds array subscripts
-			"-Wno-attributes" # Permit unrecognised attributes
-		)
-	endif()
-
-	if(USE_WERROR)
-		list(APPEND COMPILE_ERROR_FLAGS
-			"-Werror" # Treat warnings as errors
-		)
-	endif()
-elseif(MSVC)
-	set(COMPILE_ERROR_FLAGS
-		"/W2" # Enable some warnings by default
-		"/external:W0" # Don't emit warnings for third-party code
-		"/external:anglebrackets" # Consider headers included with angle brackets to be third-party
-		"/external:templates-" # Still emit warnings from first-party instantiations of third-party templates
-		# Silence "class X needs to have DLL-interface to be used by clients of
-		# class Y" warnings. These aren't trivial to address, and don't pose a
-		# problem for us since we build all modules with the same compiler and
-		# options, and dynamically link the CRT.
-		"/wd4251"
-	)
-	set(THIRD_PARTY_COMPILE_ERROR_FLAGS
-		"/W0" # Disable all warnings
-	)
-
-	if(USE_WERROR)
-		list(APPEND COMPILE_ERROR_FLAGS
-			"/WX" # Treat warnings as errors
-		)
-	endif()
-endif()
-add_compile_options("$<IF:$<BOOL:$<TARGET_PROPERTY:SYSTEM>>,${THIRD_PARTY_COMPILE_ERROR_FLAGS},${COMPILE_ERROR_FLAGS}>")
 
 IF(NOT CMAKE_BUILD_TYPE)
 	message(STATUS "Setting build type to 'Release' as none was specified.")
@@ -750,6 +679,22 @@ elseif(MSVC)
 	add_compile_options("/utf-8")
 ENDIF()
 
+# gcc builds support gprof for profiling
+# clang too seems to support gprof, but i couldn't get it working.
+# if needed, change the if condition to "GNU|CLANG"
+if(NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+	set(STATUS_GPROF ", NOT SUPPORTED BY THIS COMPILER")
+	set(WANT_DEBUG_GPROF OFF)
+endif()
+
+if(WANT_DEBUG_GPROF)
+	add_compile_options(-pg)
+	add_link_options(-pg)
+	set(STATUS_GPROF "OK")
+else()
+	set(STATUS_GPROF "Disabled ${STATUS_GPROF}")
+endif()
+
 # add enabled sanitizers
 function(add_sanitizer sanitizer supported_compilers want_flag status_flag)
 	if(${want_flag})
@@ -774,6 +719,8 @@ add_sanitizer(memory "Clang" WANT_DEBUG_MSAN STATUS_DEBUG_MSAN -fno-omit-frame-p
 # not being found by PeakController
 add_sanitizer(undefined "GNU|Clang" WANT_DEBUG_UBSAN STATUS_DEBUG_UBSAN -fno-sanitize=vptr)
 
+# Add warning and error flags
+include(ErrorFlags)
 
 # use ccache
 include(CompileCache)
@@ -811,7 +758,7 @@ IF(LMMS_BUILD_LINUX)
 		"${CMAKE_BINARY_DIR}/lmmsconfig.h"
 		"${CMAKE_BINARY_DIR}/lmmsversion.h"
 		"${CMAKE_SOURCE_DIR}/src/gui/embed.cpp"
-		DESTINATION "${CMAKE_INSTALL_PREFIX}/include/lmms/")
+		DESTINATION "include/lmms/")
 ENDIF(LMMS_BUILD_LINUX)
 
 #
@@ -915,6 +862,8 @@ MESSAGE(
 "* Debug using ThreadSanitizer       : ${STATUS_DEBUG_TSAN}\n"
 "* Debug using MemorySanitizer       : ${STATUS_DEBUG_MSAN}\n"
 "* Debug using UBSanitizer           : ${STATUS_DEBUG_UBSAN}\n"
+"* Debug packaging commands          : ${STATUS_DEBUG_CPACK}\n"
+"* Profile using GNU profiler        : ${STATUS_GPROF}\n"
 )
 
 MESSAGE(

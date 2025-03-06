@@ -25,6 +25,8 @@
 #ifndef LMMS_GRANULAR_PITCH_SHIFTER_EFFECT_H
 #define LMMS_GRANULAR_PITCH_SHIFTER_EFFECT_H
 
+#include <numbers>
+
 #include "Effect.h"
 #include "GranularPitchShifterControls.h"
 
@@ -48,7 +50,8 @@ class GranularPitchShifterEffect : public Effect
 public:
 	GranularPitchShifterEffect(Model* parent, const Descriptor::SubPluginFeatures::Key* key);
 	~GranularPitchShifterEffect() override = default;
-	bool processAudioBuffer(SampleFrame* buf, const fpp_t frames) override;
+
+	ProcessStatus processImpl(SampleFrame* buf, const fpp_t frames) override;
 
 	EffectControls* controls() override
 	{
@@ -58,7 +61,7 @@ public:
 	// double index and fraction are required for good quality
 	float getHermiteSample(double index, int ch)
 	{
-		const int index_floor = static_cast<int>(index);
+		const auto index_floor = static_cast<std::size_t>(index);
 		const double fraction = index - index_floor;
 		
 		float v0, v1, v2, v3;
@@ -117,12 +120,13 @@ private:
 
 		void setCoefs(float sampleRate, float cutoff)
 		{
-		    const float g = std::tan(F_PI * cutoff / sampleRate);
-		    const float ginv = g / (1.f + g * (g + F_SQRT_2));
-		    m_g1 = ginv;
-		    m_g2 = 2.f * (g + F_SQRT_2) * ginv;
-		    m_g3 = g * ginv;
-		    m_g4 = 2.f * ginv;
+			using namespace std::numbers;
+			const float g = std::tan(pi_v<float> * cutoff / sampleRate);
+			const float ginv = g / (1.f + g * (g + sqrt2_v<float>));
+			m_g1 = ginv;
+			m_g2 = 2 * (g + sqrt2_v<float>) * ginv;
+			m_g3 = g * ginv;
+			m_g4 = 2 * ginv;
 		}
 
 		float process(float input)

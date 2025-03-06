@@ -24,6 +24,9 @@
 
 #include "Editor.h"
 
+#include "DeprecationHelper.h"
+#include "GuiApplication.h"
+#include "MainWindow.h"
 #include "Song.h"
 
 #include "embed.h"
@@ -174,7 +177,7 @@ QAction *Editor::playAction() const
 	return m_playAction;
 }
 
-void Editor::closeEvent( QCloseEvent * _ce )
+void Editor::closeEvent(QCloseEvent * event)
 {
 	if( parentWidget() )
 	{
@@ -184,7 +187,8 @@ void Editor::closeEvent( QCloseEvent * _ce )
 	{
 		hide();
 	}
-	_ce->accept();
+	getGUI()->mainWindow()->refocus();
+	event->ignore();
  }
 
 DropToolBar::DropToolBar(QWidget* parent) : QToolBar(parent)
