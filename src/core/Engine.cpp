@@ -22,8 +22,6 @@
  *
  */
 
-#include <luacpp_static>
-
 #include "Engine.h"
 #include "AudioEngine.h"
 #include "ConfigManager.h"

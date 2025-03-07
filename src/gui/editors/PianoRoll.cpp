@@ -4549,7 +4549,7 @@ void PianoRoll::updatePosition(const TimePos & t)
 {
 	if( ( Engine::getSong()->isPlaying()
 			//&& Engine::getSong()->playMode() == Song::PlayMode::MidiClip
-			&& m_timeLine->autoScroll() == TimeLineWidget::AutoScrollState::Enabled
+			&& m_timeLine->autoScroll() != TimeLineWidget::AutoScrollState::Disabled
 		) || m_scrollBack )
 	{
 		autoScroll(t);

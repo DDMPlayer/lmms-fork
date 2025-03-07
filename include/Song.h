@@ -219,6 +219,16 @@ public:
 	{
 		return m_exporting;
 	}
+	
+	inline void setLoopCorrection( bool loopCorrection )
+	{
+		m_loopCorrection = loopCorrection;
+	}
+	
+	inline bool getLoopCorrection()
+	{
+		return m_loopCorrection;
+	}
 
 	inline void setExportLoop( bool exportLoop )
 	{
@@ -476,6 +486,7 @@ private:
 
 	volatile bool m_recording;
 	volatile bool m_exporting;
+	volatile bool m_loopCorrection;
 	volatile bool m_exportLoop;
 	volatile bool m_renderBetweenMarkers;
 	volatile bool m_playing;

@@ -737,8 +737,13 @@ void Song::startExport()
 		{
 			m_exportSongEnd = timeline.loopEnd();
 		}
-
-		if (!m_exportLoop) 
+		
+		if( m_loopCorrection )
+		{
+			m_exportSongEnd += TimePos(4,0);
+		}
+		
+		else if (!m_exportLoop) 
 			m_exportSongEnd += TimePos(1,0);
         
 		m_exportSongBegin = TimePos(0,0);

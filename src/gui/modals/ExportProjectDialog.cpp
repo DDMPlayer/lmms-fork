@@ -182,7 +182,8 @@ void ExportProjectDialog::startExport()
 		output_name+=m_fileExtension;
 	}
 	m_renderManager.reset(new RenderManager( qs, os, m_ft, output_name ));
-
+	
+	Engine::getSong()->setLoopCorrection( loopCorrectionCB->isChecked() );
 	Engine::getSong()->setExportLoop( exportLoopCB->isChecked() );
 	Engine::getSong()->setRenderBetweenMarkers( renderMarkersCB->isChecked() );
 	Engine::getSong()->setLoopRenderCount(loopCountSB->value());

@@ -23,7 +23,9 @@
  */
 
 
+#include <QDebug>
 #include <QFile>
+#include <QProcess>
 
 #include "ProjectRenderer.h"
 #include "Song.h"
@@ -33,6 +35,8 @@
 #include "AudioFileOgg.h"
 #include "AudioFileMP3.h"
 #include "AudioFileFlac.h"
+#include <TextFloat.h>
+#include "embed.h"
 
 
 namespace lmms
@@ -190,10 +194,65 @@ void ProjectRenderer::run()
 	perfLog.end();
 
 	// If the user aborted export-process, the file has to be deleted.
+	qDebug() << Engine::getSong()->getLoopCorrection();
+	qDebug() << m_abort;
 	const QString f = m_fileDev->outputFile();
+	
 	if( m_abort )
 	{
 		QFile( f ).remove();
+	}
+	
+	else if(Engine::getSong()->getLoopCorrection())
+	{
+		const QString command = "C:\\Projects\\JavaScript\\SongLoopCorrection\\process_file.bat";
+		QStringList params;
+		
+		bpm_t bpm = Engine::getSong()->getTempo();
+		int ticks_ber_bar = Engine::getSong()->ticksPerBar();
+		
+		params << f << QString::number(bpm) << QString::number(ticks_ber_bar);
+		
+		QProcess process;
+		process.setStandardOutputFile("C:\\Projects\\JavaScript\\SongLoopCorrection\\stdout.txt");
+		process.setStandardErrorFile("C:\\Projects\\JavaScript\\SongLoopCorrection\\stderr.txt");
+		
+		gui::TextFloat::displayMessage( tr( "Project exported" ), tr( "Loop correction in progress..."),
+			embed::getIconPixmap( "project_save", 24, 24 ), 2000 );
+		
+		qDebug() << "Initiated loop correction.";
+		
+		process.start(command, params);
+		
+		// Wait for the process to finish
+		if (!process.waitForFinished()) {
+			qDebug() << "In condition 1.";
+			
+			qWarning() << "Command failed to execute:" << process.errorString();
+			gui::TextFloat::displayMessage( tr( "Project exported" ), tr( "Loop corrected failed."),
+				embed::getIconPixmap( "error", 24, 24 ), 2000 );
+			return;
+		}
+		
+		qDebug() << "Passed condition 1.";
+		
+		// Check if the command was successful
+		if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+			qDebug() << "In condition 2.";
+			
+			qWarning() << "Command exited with errors.";
+			qWarning() << process.readAllStandardError();
+			gui::TextFloat::displayMessage( tr( "Project exported" ), tr( "Loop corrected failed."),
+				embed::getIconPixmap( "error", 24, 24 ), 2000 );
+			return;
+		}
+		
+		else {
+			qDebug() << "Passed condition 2.";
+			
+			gui::TextFloat::displayMessage( tr( "Project exported" ), tr( "Loop corrected successfully."),
+				embed::getIconPixmap( "project_save", 24, 24 ), 2000 );
+		}
 	}
 }
 
