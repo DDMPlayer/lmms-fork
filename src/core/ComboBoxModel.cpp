@@ -69,6 +69,17 @@ int ComboBoxModel::findText( const QString& txt ) const
 }
 
 
+void ComboBoxModel::setCurrentText( const QString& name )
+{
+	for(int i = 0; i < m_items.size(); i++) {
+		if(name == m_items[i].first) {
+			setValue(i);
+			return;
+		}
+	}
+}
+
+
 } // namespace lmms
 
 

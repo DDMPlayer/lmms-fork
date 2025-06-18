@@ -180,7 +180,7 @@ PianoRoll::PianoRoll() :
 	m_whiteKeyBigHeight(m_keyLineHeight * 2),
 	m_blackKeyHeight(m_keyLineHeight),
 	m_lenOfNewNotes( TimePos( 0, DefaultTicksPerBar/4 ) ),
-	m_lastNoteVolume( DefaultVolume ),
+	m_lastNoteVolume( DefaultVolume * 1.4 ),
 	m_lastNotePanning( DefaultPanning ),
 	m_minResizeLen( 0 ),
 	m_startKey( INITIAL_START_KEY ),
@@ -337,11 +337,11 @@ PianoRoll::PianoRoll() :
 					this, SLOT(zoomingYChanged()));
 
 	// Set up quantization model
-	m_quantizeModel.addItem( tr( "Note lock" ) );
+	m_quantizeModel.addItem( tr( "Zoom-based" ) );
 	for (auto q : Quantizations) {
 		m_quantizeModel.addItem(QString("1/%1").arg(q));
 	}
-	m_quantizeModel.setValue( m_quantizeModel.findText( "1/16" ) );
+	m_quantizeModel.setValue( m_quantizeModel.findText( "Zoom-based" ) );
 
 	connect( &m_quantizeModel, SIGNAL(dataChanged()),
 					this, SLOT(quantizeChanged()));
@@ -448,7 +448,7 @@ PianoRoll::PianoRoll() :
 
 void PianoRoll::reset()
 {
-	m_lastNoteVolume = DefaultVolume;
+	m_lastNoteVolume = DefaultVolume * 1.4;
 	m_lastNotePanning = DefaultPanning;
 	clearGhostClip();
 }
@@ -506,7 +506,7 @@ void PianoRoll::changeNoteEditMode( int i )
 
 void PianoRoll::markSemiTone(SemiToneMarkerAction i, bool fromMenu)
 {
-	const int key = fromMenu
+	int key = fromMenu
 		? getKey(mapFromGlobal(m_semiToneMarkerMenu->pos()).y())
 		: m_keyModel.value() - 1;
 	const InstrumentFunctionNoteStacking::Chord * chord = nullptr;
@@ -600,6 +600,9 @@ void PianoRoll::markSemiTone(SemiToneMarkerAction i, bool fromMenu)
 		{
 			m_markedSemiTones.clear();
 			
+			bool list[KeysPerOctave];
+			for( int i = 0; i < KeysPerOctave; i++ ) list[i] = false;
+			
 			NoteVector selected_notes = getSelectedNotes();
 			if(selected_notes.size() == 0) return;
 			
@@ -608,10 +611,93 @@ void PianoRoll::markSemiTone(SemiToneMarkerAction i, bool fromMenu)
 			for( int i = 0; i < selected_notes.size(); i++ )
 			{
 				Note * n = selected_notes[i];
-				m_markedSemiTones.push_back( n->key() );
+				list[n->key() % KeysPerOctave] = true;
+				qDebug(QString::number(n->key() % KeysPerOctave).toStdString().c_str());
 			}
 			
 			qDebug("AAAG2");
+			
+			InstrumentFunctionNoteStacking::ChordTable table = InstrumentFunctionNoteStacking::ChordTable::getInstance();
+			std::vector<InstrumentFunctionNoteStacking::Chord> chords = table.chords();
+			
+			bool found_scale = false;
+			InstrumentFunctionNoteStacking::Chord* scale;
+			int scale_root = 0;
+			
+			qDebug("AAAG3");
+			
+			for( int chord = 0; chord < chords.size() && !found_scale; chord++) {
+				InstrumentFunctionNoteStacking::Chord* cur_chord = &chords[chord];
+				if(!cur_chord->isScale()) continue;
+				if(cur_chord->getName() == "Chromatic") continue;
+				
+				for( int root = 0; root < KeysPerOctave && !found_scale; root++) {
+					int approval = 0;
+					
+					for( int i = 0; i <= KeysPerOctave && approval < 1000; i++ )
+					{
+						qDebug(("Index: " + QString::number(i) + " - Approval: " + QString::number(approval)).toStdString().c_str());
+						
+						if( !list[i] || (list[i] && (cur_chord->hasSemiTone( (i - root) % KeysPerOctave ))))
+						{
+							approval += 1;
+						} else {
+							approval = 1000;
+						}
+					}
+					
+					qDebug(("Scale: "+cur_chord->getName() + " - Root: " + QString::number(root) + " - Approval: " + QString::number(approval)).toStdString().c_str());
+					
+					if(approval < 1000) {
+						scale = cur_chord;
+						scale_root = root;
+						found_scale = true;
+						chord = chords.size();
+						
+					}
+				}
+			}
+			
+			qDebug("AAAG4");
+			
+			if(found_scale) {
+				m_keyModel.setCurrentText(s_noteStrings[scale_root]);
+				m_scaleModel.setCurrentText(scale->getName());
+				
+				key = scale_root;
+				chord = scale;
+				
+				const int first = chord->isScale() ? 0 : key;
+				const int last = chord->isScale() ? NumKeys : key + chord->last();
+				const int cap = (chord->isScale() || chord->last() == 0) ? trackOctaveSize() : chord->last();
+				
+				for( int i = first; i <= last; i++ )
+				{
+					if( chord->hasSemiTone( ( i + cap - ( key % cap ) ) % cap ) )
+					{
+						m_markedSemiTones.push_back( i );
+					}
+				}
+			}
+			
+			else {
+				m_keyModel.setCurrentText("No key");
+				m_scaleModel.setCurrentText("No scale");
+				
+				const int first = 0;
+				const int last = NumKeys;
+				const int cap = trackOctaveSize();
+				
+				for( int i = first; i <= last; i++ )
+				{
+					if( list[i%cap] )
+					{
+						m_markedSemiTones.push_back( i );
+					}
+				}
+			}
+			
+			qDebug("AAAG5");
 			break;
 		}
 		default:
@@ -2129,8 +2215,8 @@ void PianoRoll::testPlayNote( Note * n )
 	if( ! n->isPlaying() && ! m_recording && ! m_stepRecorder.isRecording())
 	{
 		n->setIsPlaying( true );
-
-		const int baseVelocity = m_midiClip->instrumentTrack()->midiPort()->baseVelocity();
+		
+		const int baseVelocity = m_midiClip->instrumentTrack()->midiPort()->baseVelocity() * DefaultVolume;
 
 		m_midiClip->instrumentTrack()->pianoModel()->handleKeyPress(n->key(), n->midiVelocity(baseVelocity));
 
@@ -4833,22 +4919,25 @@ int PianoRoll::quantization() const
 {
 	if( m_quantizeModel.value() == 0 )
 	{
-		if( m_noteLenModel.value() > 0 )
-		{
-			return newNoteLen();
-		}
-		else
-		{
-			return DefaultTicksPerBar / 16;
-		}
+		//if( m_noteLenModel.value() > 0 )
+		//{
+		//	return newNoteLen();
+		//}
+		//else
+		//{
+		//	return DefaultTicksPerBar / 16;
+		//}
+		// DDM changed
+		return Quantizations[9 - int ( ( double (m_zoomingModel.value() - 3) ) / 2.0)];
 	}
 
 	return DefaultTicksPerBar / Quantizations[m_quantizeModel.value() - 1];
 }
 
+#include <InstrumentFunctions.h>
 #include <QtGlobal>  // for qAbs
 
-int getClosestSemiTone(const QList<int>& m_markedSemiTones, int m_key)
+int PianoRoll::getClosestSemiTone(QuantizeAction mode, const QList<int>& m_markedSemiTones, int m_key)
 {
 	// Handle the case where the list is empty.
 	if (m_markedSemiTones.isEmpty()) {
@@ -4862,7 +4951,11 @@ int getClosestSemiTone(const QList<int>& m_markedSemiTones, int m_key)
 	// Iterate through the list to find the element with the smallest absolute difference.
 	for (int tone : m_markedSemiTones) {
 		int diff = qAbs(tone - m_key);
-		if (diff < smallestDiff) {
+		if (mode == QuantizeAction::CeilPitch && diff < smallestDiff) {
+			smallestDiff = diff;
+			closest = tone;
+		}
+		if (mode == QuantizeAction::FloorPitch && diff <= smallestDiff) {
 			smallestDiff = diff;
 			closest = tone;
 		}
@@ -4908,9 +5001,9 @@ void PianoRoll::quantizeNotes(QuantizeAction mode)
 		{
 			copy.quantizeLength(quantization());
 		}
-		if (mode == QuantizeAction::Pitch)
+		if (mode == QuantizeAction::FloorPitch || mode == QuantizeAction::CeilPitch)
 		{
-			copy.setKey(getClosestSemiTone(m_markedSemiTones, copy.key()));
+			copy.setKey(getClosestSemiTone(mode, m_markedSemiTones, copy.key()));
 		}
 		m_midiClip->addNote(copy, false);
 	}
@@ -5039,19 +5132,22 @@ PianoRollWindow::PianoRollWindow() :
 	auto quantizeAction = new QAction(embed::getIconPixmap("quantize"), tr("Quantize"), this);
 	auto quantizePosAction = new QAction(tr("Quantize positions"), this);
 	auto quantizeLengthAction = new QAction(tr("Quantize lengths"), this);
-	auto quantizePitchAction = new QAction(tr("Quantize pitches"), this);
+	auto quantizeFloorPitchAction = new QAction(tr("Quantize floor pitches"), this);
+	auto quantizeCeilPitchAction = new QAction(tr("Quantize ceiling pitches"), this);
 
 	connect(quantizeAction, &QAction::triggered, [this](){ m_editor->quantizeNotes(); });
 	connect(quantizePosAction, &QAction::triggered, [this](){ m_editor->quantizeNotes(PianoRoll::QuantizeAction::Pos); });
 	connect(quantizeLengthAction, &QAction::triggered, [this](){ m_editor->quantizeNotes(PianoRoll::QuantizeAction::Length); });
-	connect(quantizePitchAction, &QAction::triggered, [this](){ m_editor->quantizeNotes(PianoRoll::QuantizeAction::Pitch); });
+	connect(quantizeFloorPitchAction, &QAction::triggered, [this](){ m_editor->quantizeNotes(PianoRoll::QuantizeAction::FloorPitch); });
+	connect(quantizeCeilPitchAction, &QAction::triggered, [this](){ m_editor->quantizeNotes(PianoRoll::QuantizeAction::CeilPitch); });
 
 	quantizeButton->setPopupMode(QToolButton::MenuButtonPopup);
 	quantizeButton->setDefaultAction(quantizeAction);
 	quantizeButton->setMenu(quantizeButtonMenu);
 	quantizeButtonMenu->addAction(quantizePosAction);
 	quantizeButtonMenu->addAction(quantizeLengthAction);
-	quantizeButtonMenu->addAction(quantizePitchAction);
+	quantizeButtonMenu->addAction(quantizeFloorPitchAction);
+	quantizeButtonMenu->addAction(quantizeCeilPitchAction);
 
 	notesActionsToolBar->addAction( drawAction );
 	notesActionsToolBar->addAction( eraseAction );

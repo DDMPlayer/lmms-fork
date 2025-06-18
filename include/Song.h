@@ -68,9 +68,11 @@ class LMMS_EXPORT Song : public TrackContainer
 {
 	Q_OBJECT
 	mapPropertyFromModel( int,getTempo,setTempo,m_tempoModel );
+	mapPropertyFromModel( int,masterHumanization,setMasterHumanization,m_masterHumanizationModel );
 	mapPropertyFromModel( int,masterPitch,setMasterPitch,m_masterPitchModel );
 	mapPropertyFromModel( int,masterVolume,setMasterVolume, m_masterVolumeModel );
 public:
+	
 	enum class PlayMode
 	{
 		None,
@@ -389,8 +391,15 @@ public:
 	void setPlayPos( tick_t ticks, PlayMode playMode );
 
 	Metronome& metronome() { return m_metronome; }
+	
+	bool m_folderLoopEnabled = false;
+	
+signals:
+	void doFolderLoop();
 
 public slots:
+	void func_doFolderLoop();
+	
 	void playSong();
 	void record();
 	void playAndRecord();
@@ -474,6 +483,7 @@ private:
 	int m_oldTicksPerBar;
 	IntModel m_masterVolumeModel;
 	IntModel m_masterPitchModel;
+	IntModel m_masterHumanizationModel;
 
 	ControllerVector m_controllers;
 

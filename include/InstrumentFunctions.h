@@ -53,7 +53,7 @@ class InstrumentFunctionNoteStacking : public Model, public JournallingObject
 
 public:
 	static const int MAX_CHORD_POLYPHONY = 13;
-	static const int NUM_CHORD_TABLES = 98;
+	static const int NUM_CHORD_TABLES = 100;
 
 private:
 	using ChordSemiTones = std::array<int8_t, MAX_CHORD_POLYPHONY>;
@@ -79,6 +79,7 @@ public:
 	private:
 		QString m_name;
 		ChordSemiTones m_semiTones;
+		int m_trueSize; // accounting for -1s
 		int m_size;
 
 	public:
@@ -93,7 +94,7 @@ public:
 
 		bool isScale() const
 		{
-			return size() > 5;
+			return m_trueSize >= 8;
 		}
 
 		bool isEmpty() const

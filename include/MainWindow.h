@@ -153,6 +153,7 @@ public slots:
 
 	void emptySlot();
 	void createNewProject();
+	void generateSong();
 	void openNextProject();
 	void openProject();
 	bool saveProject();
@@ -253,6 +254,7 @@ private:
 	QMenu * m_viewMenu;
 
 	ToolButton * m_metronomeToggle;
+	ToolButton * m_folderLoop;
 
 	SessionState m_session;
 	
@@ -264,6 +266,7 @@ private slots:
 	void updateViewMenu();
 	void updateConfig( QAction * _who );
 	void onToggleMetronome();
+	void onToggleFolderLoop();
 	void onExportProject();
 	void onExportProjectTracks();
 	void onImportProject();

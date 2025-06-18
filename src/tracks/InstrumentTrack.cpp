@@ -58,7 +58,7 @@ InstrumentTrack::InstrumentTrack(TrackContainer* tc) :
 	m_firstKeyModel(0, 0, NumKeys - 1, this, tr("First note")),
 	m_lastKeyModel(0, 0, NumKeys - 1, this, tr("Last note")),
 	m_hasAutoMidiDev(false),
-	m_volumeModel(DefaultVolume, MinVolume, MaxVolume, 0.1f, this, tr("Volume")),
+	m_volumeModel(DefaultVolume * 1.4, MinVolume, MaxVolume, 0.1f, this, tr("Volume")),
 	m_panningModel(DefaultPanning, PanningLeft, PanningRight, 0.1f, this, tr("Panning")),
 	m_audioBusHandle(tr("unnamed_track"), true, &m_volumeModel, &m_panningModel, &m_mutedModel),
 	m_pitchModel(0, MinPitchDefault, MaxPitchDefault, 1, this, tr("Pitch")),
@@ -726,7 +726,7 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 	else
 	{
 		getClipsInRange( clips, _start, _start + static_cast<int>(
-					_frames / frames_per_tick ) );
+					_frames / frames_per_tick ) ); 
 	}
 
 	// Handle automation: detuning
@@ -766,19 +766,31 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 
 		// very effective algorithm for playing notes that are
 		// posated within the current sample-frame
-
-
+		
+		
+		int i = 0;
 		if( cur_start > 0 )
 		{
 			// skip notes which are posated before start-bar
-			while( nit != notes.end() && ( *nit )->pos() < cur_start )
+			while(true)
 			{
+				int random = 5 * ((((clip->id() + i * 934) * 1927) % 1203) % 3) * Engine::getSong()->masterHumanization();
+				i++;
+				const TimePos randomOffset = TimePos(random);
+				if(!(nit != notes.end() && ( *nit )->pos() + randomOffset < cur_start)) break;
 				++nit;
 			}
 		}
-
-		while (nit != notes.end() && (*nit)->pos() == cur_start)
+		
+		i = 0;
+		while (true)
 		{
+			int random = 5 * ((((clip->id() + i * 934) * 1927) % 1203) % 3) * Engine::getSong()->masterHumanization();
+			i++; 
+			const TimePos randomOffset = TimePos(random);
+			
+			if(!(nit != notes.end() && (*nit)->pos() + randomOffset == cur_start)) break;
+			
 			const auto currentNote = *nit;
 
 			// If the note is a Step Note, frames will be 0 so the NotePlayHandle
@@ -794,7 +806,9 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 			{
 				// then set song-global offset of clip in order to
 				// properly perform the note detuning
-				notePlayHandle->setSongGlobalParentOffset( c->startPosition() );
+				notePlayHandle->setSongGlobalParentOffset( c->startPosition() + randomOffset );
+			} else {
+				notePlayHandle->setSongGlobalParentOffset( randomOffset );
 			}
 
 			Engine::audioEngine()->addPlayHandle( notePlayHandle );

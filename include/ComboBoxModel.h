@@ -54,6 +54,8 @@ public:
 	void clear();
 
 	int findText( const QString& txt ) const;
+	
+	void setCurrentText( const QString& name );
 
 	QString currentText() const
 	{

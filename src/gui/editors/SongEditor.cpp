@@ -213,6 +213,36 @@ SongEditor::SongEditor( Song * song ) :
 	getGUI()->mainWindow()->addWidgetToToolBar( m_masterPitchSlider );
 
 	getGUI()->mainWindow()->addSpacingToToolBar( 10 );
+	
+	auto master_humanization_lbl = new QLabel(tb);
+	master_humanization_lbl->setPixmap( embed::getIconPixmap( "hand" ) );
+	master_humanization_lbl->setFixedHeight( 64 );
+	
+	m_masterHumanizationSlider = new AutomatableSlider( tb, tr( "Master humanization" ) );
+	m_masterHumanizationSlider->setModel( &m_song->m_masterHumanizationModel );
+	m_masterHumanizationSlider->setOrientation( Qt::Vertical );
+	m_masterHumanizationSlider->setPageStep( 1 );
+	m_masterHumanizationSlider->setTickPosition( QSlider::TicksLeft );
+	m_masterHumanizationSlider->setFixedSize( 26, 60 );
+	m_masterHumanizationSlider->setTickInterval( 12 );
+	m_masterHumanizationSlider->setToolTip(tr("Master humanization"));
+	connect( m_masterHumanizationSlider, SIGNAL(logicValueChanged(int)), this,
+		SLOT(setMasterHumanization(int)));
+	connect( m_masterHumanizationSlider, SIGNAL(sliderPressed()), this,
+		SLOT(showMasterHumanizationFloat()));
+	connect( m_masterHumanizationSlider, SIGNAL(logicSliderMoved(int)), this,
+		SLOT(updateMasterHumanizationFloat(int)));
+	connect( m_masterHumanizationSlider, SIGNAL(sliderReleased()), this,
+		SLOT(hideMasterHumanizationFloat()));
+	
+	m_mhsStatus = new TextFloat;
+	m_mhsStatus->setTitle( tr( "Master humanization" ) );
+	m_mhsStatus->setPixmap( embed::getIconPixmap( "hand" ) );
+	
+	getGUI()->mainWindow()->addWidgetToToolBar( master_humanization_lbl );
+	getGUI()->mainWindow()->addWidgetToToolBar( m_masterHumanizationSlider );
+	
+	getGUI()->mainWindow()->addSpacingToToolBar( 10 );
 
 	// create widget for oscilloscope- and cpu-load-widget
 	auto vc_w = new QWidget(tb);
@@ -676,7 +706,7 @@ void SongEditor::setMasterPitch( int new_val )
 {
 	updateMasterPitchFloat( new_val );
 	if( m_mpsStatus->isVisible() == false && m_song->m_loadingProject == false
-					&& m_masterPitchSlider->showStatus() )
+		&& m_masterPitchSlider->showStatus() )
 	{
 		m_mpsStatus->moveGlobal( m_masterPitchSlider,
 			QPoint( m_masterPitchSlider->width() + 2, -2 ) );
@@ -690,7 +720,7 @@ void SongEditor::setMasterPitch( int new_val )
 void SongEditor::showMasterPitchFloat( void )
 {
 	m_mpsStatus->moveGlobal( m_masterPitchSlider,
-			QPoint( m_masterPitchSlider->width() + 2, -2 ) );
+		QPoint( m_masterPitchSlider->width() + 2, -2 ) );
 	m_mpsStatus->show();
 	updateMasterPitchFloat( m_song->m_masterPitchModel.value() );
 }
@@ -701,7 +731,7 @@ void SongEditor::showMasterPitchFloat( void )
 void SongEditor::updateMasterPitchFloat( int new_val )
 {
 	m_mpsStatus->setText( tr( "Value: %1 keys").arg( new_val ) );
-
+	
 }
 
 
@@ -710,6 +740,49 @@ void SongEditor::updateMasterPitchFloat( int new_val )
 void SongEditor::hideMasterPitchFloat( void )
 {
 	m_mpsStatus->hide();
+}
+
+
+
+
+void SongEditor::setMasterHumanization( int new_val )
+{
+	updateMasterHumanizationFloat( new_val );
+	if( m_mhsStatus->isVisible() == false && m_song->m_loadingProject == false
+		&& m_masterHumanizationSlider->showStatus() )
+	{
+		m_mhsStatus->moveGlobal( m_masterHumanizationSlider,
+			QPoint( m_masterHumanizationSlider->width() + 2, -2 ) );
+		m_mhsStatus->setVisibilityTimeOut( 1000 );
+	}
+}
+
+
+
+
+void SongEditor::showMasterHumanizationFloat( void )
+{
+	m_mhsStatus->moveGlobal( m_masterHumanizationSlider,
+		QPoint( m_masterHumanizationSlider->width() + 2, -2 ) );
+	m_mhsStatus->show();
+	updateMasterHumanizationFloat( m_song->m_masterHumanizationModel.value() );
+}
+
+
+
+
+void SongEditor::updateMasterHumanizationFloat( int new_val )
+{
+	m_mhsStatus->setText( tr( "Strength: %1" ).arg( new_val ) );
+	
+}
+
+
+
+
+void SongEditor::hideMasterHumanizationFloat( void )
+{
+	m_mhsStatus->hide();
 }
 
 

@@ -174,6 +174,7 @@ void ExportProjectDialog::startExport()
 	// Make sure we have the the correct file extension
 	// so there's no confusion about the codec in use.
 	auto output_name = m_fileName;
+	if(loopCorrectionCB->isChecked()) m_fileExtension = ".wav";
 	if (!(m_multiExport || output_name.endsWith(m_fileExtension,Qt::CaseInsensitive)))
 	{
 		output_name+=m_fileExtension;

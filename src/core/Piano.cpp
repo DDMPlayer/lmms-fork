@@ -95,7 +95,7 @@ void Piano::handleKeyPress(int key, int midiVelocity)
 {
 	if (midiVelocity == -1)
 	{
-		midiVelocity = m_instrumentTrack->midiPort()->baseVelocity();
+		midiVelocity = m_instrumentTrack->midiPort()->baseVelocity() * 1.4;
 	}
 	if (isValidKey(key))
 	{

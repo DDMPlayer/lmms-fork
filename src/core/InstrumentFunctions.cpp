@@ -113,6 +113,9 @@ std::array<InstrumentFunctionNoteStacking::ChordTable::Init, InstrumentFunctionN
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Maj13" ), { 0, 4, 7, 11, 14, 21, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "m13" ), { 0, 3, 7, 10, 14, 21, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "m-Maj13" ), { 0, 3, 7, 11, 14, 21, -1 } },
+		
+	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Pentatonic Major" ), { 0, 2, 5, 7, 9, -2, -2, -1 } },
+	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Pentatonic Minor" ), { 0, 3, 5, 7, 10, -2, -2, -1 } },
 
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Major" ), { 0, 2, 4, 5, 7, 9, 11, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Harmonic minor" ), { 0, 2, 3, 5, 7, 8, 11, -1 } },
@@ -124,7 +127,7 @@ std::array<InstrumentFunctionNoteStacking::ChordTable::Init, InstrumentFunctionN
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Jap in sen" ), { 0, 1, 5, 7, 10, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Major bebop" ), { 0, 2, 4, 5, 7, 8, 9, 11, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Dominant bebop" ), { 0, 2, 4, 5, 7, 9, 10, 11, -1 } },
-	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Blues" ), { 0, 3, 5, 6, 7, 10, -1 } },
+	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Blues" ), { 0, 3, 5, 6, 7, 10, -2, -2, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Arabic" ), { 0, 1, 4, 5, 7, 8, 11, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Enigmatic" ), { 0, 1, 4, 6, 8, 10, 11, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Neopolitan" ), { 0, 1, 3, 5, 7, 9, 11, -1 } },
@@ -141,7 +144,7 @@ std::array<InstrumentFunctionNoteStacking::ChordTable::Init, InstrumentFunctionN
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Half-Whole Diminished" ), { 0, 1, 3, 4, 6, 7, 9, 10, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Japanese (ichikosucho)" ), { 0,2,4,5,6,7,9,11,-1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Japanese (taishikicho)" ), { 0,2,4,5,6,7,9,10,11,-1 } },
-	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Anti-Major" ), { 1, 1, 3, 6, 8, 10, -1 } },
+	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Anti-Major" ), { 1, 1, 3, 6, 8, 10, -2, -1 } },
 
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "5" ), { 0, 7, -1 } },
 	{ QT_TRANSLATE_NOOP( "InstrumentFunctionNoteStacking", "Phrygian dominant" ), { 0, 1, 4, 5, 7, 8, 10, -1 } },
@@ -154,13 +157,21 @@ std::array<InstrumentFunctionNoteStacking::ChordTable::Init, InstrumentFunctionN
 InstrumentFunctionNoteStacking::Chord::Chord( const char * n, const ChordSemiTones & semi_tones ) :
 	m_name( InstrumentFunctionNoteStacking::tr( n ) )
 {
+	m_trueSize = 0;
 	for( m_size = 0; m_size < MAX_CHORD_POLYPHONY; m_size++ )
 	{
+		m_trueSize++;
+		
+		if( semi_tones[m_size] == -2 )
+		{
+			continue;
+		}
+		
 		if( semi_tones[m_size] == -1 )
 		{
 			break;
 		}
-
+		
 		m_semiTones[m_size] = semi_tones[m_size];
 	}
 }

@@ -38,6 +38,7 @@
 #include <QDir>
 #include <QStringList>
 #include <QString>
+#include <qdebug.h>
 
 #include "AboutDialog.h"
 #include "AutomationEditor.h"
@@ -162,7 +163,15 @@ MainWindow::MainWindow() :
 
 	sideBar->appendTab(new FileBrowser(root_paths.join("*"), FileItem::defaultFilters(), title,
 		embed::getIconPixmap("computer").transformed(QTransform().rotate(90)), splitter, dirs_as_items));
-
+	sideBar->appendTab( new FileBrowser(
+		confMgr->userSf2Dir() + "*" +confMgr->userSf2Dir(),
+		"*.sf2",
+		tr( "My Soundfonts" ),
+		embed::getIconPixmap( "project_file" ).transformed( QTransform().rotate( 90 ) ),
+		splitter, false,
+		confMgr->userSf2Dir(),
+		confMgr->userSf2Dir()));
+	
 	m_workspace = new MovableQMdiArea(splitter);
 
 	// Load background
@@ -424,6 +433,9 @@ void MainWindow::finalize()
 		tr("Open next project in sequence"), this, SLOT(openNextProject()), m_toolBar);
 	//project_new_from_template->setMenu( templates_menu );
 	//project_new_from_template->setPopupMode( ToolButton::InstantPopup );
+	
+	auto project_generate_song = new ToolButton(embed::getIconPixmap("piano"),
+		tr("Generate song"), this, SLOT(generateSong()), m_toolBar);
 
 	auto project_open = new ToolButton(
 		embed::getIconPixmap("project_open"), tr("Open existing project"), this, SLOT(openProject()), m_toolBar);
@@ -446,8 +458,17 @@ void MainWindow::finalize()
 							m_toolBar );
 	m_metronomeToggle->setCheckable(true);
 	m_metronomeToggle->setChecked(Engine::getSong()->metronome().active());
+	
+	m_folderLoop = new ToolButton(
+		embed::getIconPixmap( "loop_points_on" ),
+		tr( "Folder loop" ),
+		this, SLOT(onToggleFolderLoop()),
+		m_toolBar );
+	m_folderLoop->setCheckable(true);
+	m_folderLoop->setChecked(Engine::getSong()->m_folderLoopEnabled);
+	
 
-	m_toolBarLayout->setColumnMinimumWidth( 0, 5 );
+	m_toolBarLayout->setColumnMinimumWidth( 0, 6 );
 	m_toolBarLayout->addWidget( project_new, 0, 1 );
 	m_toolBarLayout->addWidget( project_new_from_template, 0, 2 );
 	m_toolBarLayout->addWidget( project_open, 0, 3 );
@@ -455,6 +476,7 @@ void MainWindow::finalize()
 	m_toolBarLayout->addWidget( project_save, 0, 5 );
 	m_toolBarLayout->addWidget( project_export, 0, 6 );
 	m_toolBarLayout->addWidget( m_metronomeToggle, 0, 7 );
+	m_toolBarLayout->addWidget( project_generate_song, 0, 8 );
 
 
 	// window-toolbar
@@ -493,6 +515,7 @@ void MainWindow::finalize()
 	m_toolBarLayout->addWidget( mixer_window, 1, 5 );
 	m_toolBarLayout->addWidget( controllers_window, 1, 6 );
 	m_toolBarLayout->addWidget( project_notes_window, 1, 7 );
+	m_toolBarLayout->addWidget( m_folderLoop, 1, 8 );
 	m_toolBarLayout->setColumnStretch( 100, 1 );
 
 	// setup-dialog opened before?
@@ -546,7 +569,7 @@ void MainWindow::finalize()
 
 int MainWindow::addWidgetToToolBar( QWidget * _w, int _row, int _col )
 {
-	int col = ( _col == -1 ) ? m_toolBarLayout->columnCount() + 7 : _col;
+	int col = ( _col == -1 ) ? m_toolBarLayout->columnCount() + 3 : _col;
 	if( _w->height() > 32 || _row == -1 )
 	{
 		m_toolBarLayout->addWidget( _w, 0, col, 2, 1 );
@@ -762,6 +785,41 @@ void MainWindow::createNewProject()
 	}
 }
 
+void MainWindow::generateSong() {
+	// DDM created function.
+	const QString command = "C:\\Projects\\JavaScript\\LeitmotifGenerator\\song_generator.bat";
+	const QString filePath = "C:\\Projects\\JavaScript\\LeitmotifGenerator\\project.mmp";
+	
+		   // Create a QProcess to run the command
+	QProcess process;
+	process.start(command);
+	
+		   // Wait for the process to finish
+	if (!process.waitForFinished()) {
+		qWarning() << "Command failed to execute:" << process.errorString();
+		return;
+	}
+	
+		   // Check if the command was successful
+	if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+		qWarning() << "Command exited with errors. " << process.exitCode();
+		return;
+	}
+	
+	qWarning() << "Command exited with errors. " << process.readAllStandardOutput().toStdString().c_str();
+	
+	TextFloat::displayMessage(tr("Leitmotif generated successfully"),
+		tr("awesome!").arg(filePath),
+		embed::getIconPixmap("project_import"), 4000);
+	
+	Song *song = Engine::getSong();
+	
+	song->stop();
+	setCursor( Qt::WaitCursor );
+	song->loadProject( filePath );
+	setCursor( Qt::ArrowCursor );
+}
+
 void MainWindow::openNextProject() {
 	QString filePath = Engine::getSong()->projectFileName();
 	
@@ -774,19 +832,38 @@ void MainWindow::openNextProject() {
 	}
 	
 		   // List all files from that folder in alphabetical order and save to an array
+	QRegularExpression versionPattern(R"((.*?)(?:[ _-]?[vV](\d+))?\.mmpz)");
+	QMap<QString, QPair<int, QString>> latestFiles;
+	
 	QStringList fileList = directory.entryList(QStringList() << "*.mmpz", QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
 	
-	if (fileList.isEmpty()) {
-		//qDebug() << "No files found in the directory.";
-		return;
+	for (const QString& file : fileList) {
+		QRegularExpressionMatch match = versionPattern.match(file);
+		if (match.hasMatch()) {
+			QString baseName = match.captured(1).trimmed();
+			int version = match.captured(2).isEmpty() ? 0 : match.captured(2).toInt();
+			
+				   // If this base name is new or has a higher version, update the map
+			if (!latestFiles.contains(baseName) || version > latestFiles[baseName].first) {
+				latestFiles[baseName] = qMakePair(version, file);
+			}
+		}
 	}
 	
-	// Create a case-insensitive collator
-	fileList.sort(Qt::CaseInsensitive);
+	// Collect only the latest version files
+	QStringList latestFileList;
+	for (const auto& pair : latestFiles) {
+		latestFileList << pair.second;
+	}
+	
+	// Optionally sort them (e.g., alphabetically, case-insensitive)
+	latestFileList.sort(Qt::CaseInsensitive);
+	
+	// Now latestFileList contains: CoolFileV3.mmpz, AwesomeV2.mmpz, MyTest v4.mmpz
 	
 		   // Find the original file's index
 	QString originalFileName = QFileInfo(filePath).fileName();
-	int originalIndex = fileList.indexOf(originalFileName);
+	int originalIndex = latestFileList.indexOf(originalFileName);
 	
 	if (originalIndex == -1) {
 		//qDebug() << "Original file not found in the directory.";
@@ -794,10 +871,10 @@ void MainWindow::openNextProject() {
 	}
 	
 		   // Add one to that index
-	int newIndex = (originalIndex + 1) % fileList.size();
+	int newIndex = (originalIndex + 1) % latestFileList.size();
 	
 		   // Find the new file matching that index
-	QString newFilePath = directory.filePath(fileList.at(newIndex));
+	QString newFilePath = directory.filePath(latestFileList.at(newIndex));
 	
 	//qDebug() << "Original File:" << originalFileName;
 	//qDebug() << "New File Path:" << newFilePath;
@@ -818,8 +895,19 @@ void MainWindow::openProject()
 	if( mayChangeProject(false) )
 	{
 		FileDialog ofd( this, tr( "Open Project" ), "", tr( "LMMS (*.mmp *.mmpz)" ) );
-
-		ofd.setDirectory( ConfigManager::inst()->userProjectsDir() );
+		
+		QString filePath = Engine::getSong()->projectFileName();
+		if(filePath == "")
+		{
+			filePath = ConfigManager::inst()->userProjectsDir();
+			ofd.setDirectory( QFileInfo( filePath ).absolutePath() );
+		}
+		else
+		{
+			ofd.setDirectory( QFileInfo( filePath ).absolutePath() );
+			ofd.selectFile( QFileInfo( filePath ).fileName() );
+		}
+		
 		ofd.setFileMode( FileDialog::ExistingFiles );
 		if( ofd.exec () == QDialog::Accepted &&
 						!ofd.selectedFiles().isEmpty() )
@@ -1215,6 +1303,11 @@ void MainWindow::onToggleMetronome()
 	Engine::getSong()->metronome().setActive(m_metronomeToggle->isChecked());
 }
 
+
+void MainWindow::onToggleFolderLoop()
+{
+	Engine::getSong()->m_folderLoopEnabled = !Engine::getSong()->m_folderLoopEnabled;
+}
 
 
 

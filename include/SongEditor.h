@@ -101,11 +101,16 @@ private slots:
 	void showMasterVolumeFloat();
 	void updateMasterVolumeFloat( int new_val );
 	void hideMasterVolumeFloat();
-
+	
 	void setMasterPitch( int new_val );
 	void showMasterPitchFloat();
 	void updateMasterPitchFloat( int new_val );
 	void hideMasterPitchFloat();
+	
+	void setMasterHumanization( int new_val );
+	void showMasterHumanizationFloat();
+	void updateMasterHumanizationFloat( int new_val );
+	void hideMasterHumanizationFloat();
 
 	void updateScrollBar(int len);
 
@@ -137,9 +142,11 @@ private:
 	MeterDialog * m_timeSigDisplay;
 	AutomatableSlider * m_masterVolumeSlider;
 	AutomatableSlider * m_masterPitchSlider;
+	AutomatableSlider * m_masterHumanizationSlider;
 
 	TextFloat * m_mvsStatus;
 	TextFloat * m_mpsStatus;
+	TextFloat * m_mhsStatus;
 
 	PositionLine * m_positionLine;
 

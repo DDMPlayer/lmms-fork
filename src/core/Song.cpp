@@ -38,6 +38,7 @@
 #include "ControllerRackView.h"
 #include "ControllerConnection.h"
 #include "EnvelopeAndLfoParameters.h"
+#include "MainWindow.h"
 #include "Mixer.h"
 #include "MixerView.h"
 #include "GuiApplication.h"
@@ -54,6 +55,7 @@
 #include "ProjectNotes.h"
 #include "Scale.h"
 #include "SongEditor.h"
+#include "TextFloat.h"
 #include "TimeLineWidget.h"
 #include "PeakController.h"
 
@@ -75,6 +77,7 @@ Song::Song() :
 	m_oldTicksPerBar( DefaultTicksPerBar ),
 	m_masterVolumeModel( 100, 0, 200, this, tr( "Master volume" ) ),
 	m_masterPitchModel( 0, -12, 12, this, tr( "Master pitch" ) ),
+	m_masterHumanizationModel( 0, 0, 10, this, tr( "Master humanization" ) ),
 	m_nLoadingTrack( 0 ),
 	m_fileName(),
 	m_oldFileName(),
@@ -105,7 +108,9 @@ Song::Song() :
 	connect( &m_tempoModel, SIGNAL(dataUnchanged()),
 			this, SLOT(setTempo()), Qt::DirectConnection );
 	connect( &m_timeSigModel, SIGNAL(dataChanged()),
-			this, SLOT(setTimeSignature()), Qt::DirectConnection );
+		this, SLOT(setTimeSignature()), Qt::DirectConnection );
+	connect( this, SIGNAL(doFolderLoop()),
+		this, SLOT(func_doFolderLoop()), Qt::QueuedConnection );
 
 
 	connect( Engine::audioEngine(), SIGNAL(sampleRateChanged()), this,
@@ -195,6 +200,25 @@ void Song::savePlayStartPosition()
 void Song::processNextBuffer()
 {
 	m_vstSyncController.setPlaybackJumped(false);
+	
+	if (m_folderLoopEnabled) {
+		TimePos m_exportSongEnd = TimePos(m_length, 0);
+		
+		// Handle potentially ridiculous loop points gracefully.
+		if (m_loopRenderCount > 1 && getTimeline().loopEnd() > m_exportSongEnd) 
+		{
+			m_exportSongEnd = getTimeline().loopEnd();
+		}
+		
+		if(getTimeline().loopEnabled()) m_exportSongEnd = getTimeline().loopEnd();
+		
+		if(getPlayPos() >= m_exportSongEnd) {
+			m_exportSongEnd += DefaultTicksPerBar * 4;
+			emit doFolderLoop();
+			qDebug() << "what the sigma";
+			return;
+		}
+	}
 
 	// If nothing is playing, there is nothing to do
 	if (!m_playing) { return; }
@@ -245,6 +269,10 @@ void Song::processNextBuffer()
 			setToTime(begin);
 			m_vstSyncController.setPlaybackJumped(true);
 			emit updateSampleTracks();
+			if(m_folderLoopEnabled) {
+				emit doFolderLoop();
+				return false;
+			}
 			return true;
 		}
 		return false;
@@ -901,6 +929,7 @@ void Song::clearProject()
 	m_tempoModel.reset();
 	m_masterVolumeModel.reset();
 	m_masterPitchModel.reset();
+	m_masterHumanizationModel.reset();
 	m_timeSigModel.reset();
 
 	// Clear the m_oldAutomatedValues AutomatedValueMap
@@ -910,6 +939,8 @@ void Song::clearProject()
 	AutomationClip::globalAutomationClip( &m_masterVolumeModel )->
 									clear();
 	AutomationClip::globalAutomationClip( &m_masterPitchModel )->
+									clear();
+	AutomationClip::globalAutomationClip( &m_masterHumanizationModel )->
 									clear();
 
 	Engine::audioEngine()->doneChangeInModel();
@@ -976,6 +1007,7 @@ void Song::createNewProject()
 	m_timeSigModel.reset();
 	m_masterVolumeModel.setInitValue( 100 );
 	m_masterPitchModel.setInitValue( 0 );
+	m_masterHumanizationModel.setInitValue( 0 );
 
 	QCoreApplication::instance()->processEvents();
 
@@ -1081,6 +1113,7 @@ void Song::loadProject( const QString & fileName )
 	m_timeSigModel.loadSettings( dataFile.head(), "timesig" );
 	m_masterVolumeModel.loadSettings( dataFile.head(), "mastervol" );
 	m_masterPitchModel.loadSettings( dataFile.head(), "masterpitch" );
+	m_masterHumanizationModel.loadSettings( dataFile.head(), "masterhuman" );
 
 	getTimeline(PlayMode::Song).setLoopEnabled(false);
 
@@ -1199,7 +1232,7 @@ void Song::loadProject( const QString & fileName )
 		return;
 	}
 
-	if ( hasErrors())
+	if ( hasErrors() && !m_folderLoopEnabled)
 	{
 		if ( getGUI() != nullptr )
 		{
@@ -1220,6 +1253,15 @@ void Song::loadProject( const QString & fileName )
 	updateLength();
 	setModified(false);
 	m_loadOnLaunch = false;
+	
+	if(m_folderLoopEnabled) {
+		playSong();
+		
+		gui::TextFloat::displayMessage( tr( "Now playing..." ),
+			projectFileName(),
+			embed::getIconPixmap( "project_file", 24, 24 ),
+			2000 );
+	}
 }
 
 
@@ -1235,6 +1277,7 @@ bool Song::saveProjectFile(const QString & filename, bool withResources)
 	m_timeSigModel.saveSettings( dataFile, dataFile.head(), "timesig" );
 	m_masterVolumeModel.saveSettings( dataFile, dataFile.head(), "mastervol" );
 	m_masterPitchModel.saveSettings( dataFile, dataFile.head(), "masterpitch" );
+	m_masterHumanizationModel.saveSettings( dataFile, dataFile.head(), "masterhuman" );
 
 	saveState( dataFile, dataFile.content() );
 
@@ -1553,4 +1596,19 @@ void Song::setKeymap(unsigned int index, std::shared_ptr<Keymap> newMap)
 	emit keymapListChanged(index);
 	Engine::audioEngine()->doneChangeInModel();
 }
+
+void Song::func_doFolderLoop()
+{
+	QString fileName = projectFileName();
+	
+	setPlayPos( 0, Song::PlayMode::Song );
+	stop();
+	
+	if(fileName.endsWith("project.mmp")) {
+		gui::getGUI()->mainWindow()->generateSong();
+	} else {
+		gui::getGUI()->mainWindow()->openNextProject();
+	}
+}
+
 } // namespace lmms

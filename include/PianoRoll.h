@@ -166,7 +166,8 @@ protected:
 		Both,
 		Pos,
 		Length,
-		Pitch
+		FloorPitch,
+		CeilPitch
 	};
 
 	enum class SemiToneMarkerAction
@@ -236,6 +237,7 @@ protected slots:
 	void quantizeChanged();
 	void noteLengthChanged();
 	void keyChanged();
+	int getClosestSemiTone(QuantizeAction mode, const QList<int>& m_markedSemiTones, int m_key);
 	void quantizeNotes(QuantizeAction mode = QuantizeAction::Both);
 
 	void updateSemiToneMarkerMenu();

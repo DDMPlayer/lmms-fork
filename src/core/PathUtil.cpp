@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QFileInfo>
+#include <iostream>
 
 #include "ConfigManager.h"
 #include "Engine.h"
@@ -131,21 +132,42 @@ namespace lmms::PathUtil
 		//Assume we've found the correct base location, return the full path
 		return basePrefix(assumedBase) + input;
 	}
+	
+	
+	QString replacePrefix(const QString & input, const QString target, const QString replacement) {
+		if(!input.startsWith(target)) return input;
+		
+		return replacement + input.mid(target.size());
+	}
 
 
 
 
 	QString toAbsolute(const QString & input, bool* error /* = nullptr*/)
 	{
+		QString new_input = input;
+		
+		new_input = new_input.replace("\\","/");
+		
+		new_input = replacePrefix(new_input, "C:/Users/DDMPl/NES VST 1.2.dll", "C:/Projects/LMMS/VstPlugins/NES VST 1.2.dll");
+		new_input = replacePrefix(new_input, "D:/Projetos/LMMS/VstPlugins", "C:/Projects/LMMS/VstPlugins");
+		new_input = replacePrefix(new_input, "D:/random", "C:/Projects/LMMS/Soundfonts");
+		new_input = replacePrefix(new_input, "D:/Projetos/LMMS/projects/Soundfonts", "C:/Projects/LMMS/Soundfonts");
+		new_input = replacePrefix(new_input, "D:/Projetos/LMMS/Soundfonts", "C:/Projects/LMMS/Soundfonts");
+		new_input = replacePrefix(new_input, "D:/Programas/Spitfire Audio/default vst plugin/LABS (64 Bit).dll", "C:/Program Files/Common Files/VstPlugins/LABS.dll");
+		
+		std::cout << new_input.toStdString().c_str();
+		
 		//First, do no harm to absolute paths
-		QFileInfo inputFileInfo = QFileInfo(input);
+		QFileInfo inputFileInfo = QFileInfo(new_input);
+		
 		if (inputFileInfo.isAbsolute())
 		{
 			if (error) { *error = false; }
-			return input;
+			return new_input;
 		}
 		//Next, handle old relative paths with no prefix
-		QString upgraded = input.contains(":") ? input : oldRelativeUpgrade(input);
+		QString upgraded = new_input.contains(":") ? new_input : oldRelativeUpgrade(new_input);
 
 		Base base = baseLookup(upgraded);
 		return baseLocation(base, error) + upgraded.remove(0, basePrefix(base).length());
