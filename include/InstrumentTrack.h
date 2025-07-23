@@ -27,6 +27,7 @@
 #define LMMS_INSTRUMENT_TRACK_H
 
 #include <limits>
+#include <random>
 
 #include "AudioBusHandle.h"
 #include "InstrumentFunctions.h"
@@ -229,6 +230,8 @@ public:
 	{
 		return &m_useMasterPitchModel;
 	}
+	
+	int getRandomOffset(int noteIndex, int clipId, int humanizationAmount);
 
 	void setPreviewMode( const bool );
 

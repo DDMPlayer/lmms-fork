@@ -771,13 +771,13 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 		int i = 0;
 		if( cur_start > 0 )
 		{
-			// skip notes which are posated before start-bar
+			// skip notes which are posated WAY before start-bar
 			while(true)
 			{
-				int random = 5 * ((((clip->id() + i * 934) * 1927) % 1203) % 3) * Engine::getSong()->masterHumanization();
-				i++;
+				int random = getRandomOffset(i, clip->id(), Engine::getSong()->masterHumanization());
 				const TimePos randomOffset = TimePos(random);
-				if(!(nit != notes.end() && ( *nit )->pos() + randomOffset < cur_start)) break;
+				i++;
+				if(!(nit != notes.end() && ( *nit )->pos() + randomOffset < cur_start - TimePos(1))) break;
 				++nit;
 			}
 		}
@@ -785,17 +785,21 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 		i = 0;
 		while (true)
 		{
-			int random = 5 * ((((clip->id() + i * 934) * 1927) % 1203) % 3) * Engine::getSong()->masterHumanization();
-			i++; 
+			int random = getRandomOffset(i, clip->id(), Engine::getSong()->masterHumanization());
 			const TimePos randomOffset = TimePos(random);
+			i++;
 			
-			if(!(nit != notes.end() && (*nit)->pos() + randomOffset == cur_start)) break;
+			if(nit == notes.end()) break;
+			if((*nit)->pos() + randomOffset != cur_start) {
+				nit++;
+				continue;
+			}
 			
 			const auto currentNote = *nit;
 
 			// If the note is a Step Note, frames will be 0 so the NotePlayHandle
 			// plays for the whole length of the sample
-			const auto noteFrames = currentNote->type() == Note::Type::Step
+			auto noteFrames = currentNote->type() == Note::Type::Step
 				? 0
 				: currentNote->length().frames(frames_per_tick);
 
@@ -806,9 +810,7 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 			{
 				// then set song-global offset of clip in order to
 				// properly perform the note detuning
-				notePlayHandle->setSongGlobalParentOffset( c->startPosition() + randomOffset );
-			} else {
-				notePlayHandle->setSongGlobalParentOffset( randomOffset );
+				notePlayHandle->setSongGlobalParentOffset( c->startPosition() + c->startTimeOffset());
 			}
 
 			Engine::audioEngine()->addPlayHandle( notePlayHandle );
@@ -820,6 +822,17 @@ bool InstrumentTrack::play( const TimePos & _start, const fpp_t _frames,
 	return played_a_note;
 }
 
+
+
+int InstrumentTrack::getRandomOffset(int noteIndex, int clipId, int humanizationAmount)
+{
+	int seed = (noteIndex + (clipId << 1)); /* or some other stable seed */
+	std::mt19937 rng(seed);
+	std::uniform_real_distribution<double> dist(0.0, 1.0);
+	double r = dist(rng);
+	
+	return std::abs((static_cast<int>(std::round(std::pow(r, 0.25) * humanizationAmount))));
+}
 
 
 
