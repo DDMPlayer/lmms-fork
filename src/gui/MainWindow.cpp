@@ -841,6 +841,13 @@ void MainWindow::openNextProject() {
 		QRegularExpressionMatch match = versionPattern.match(file);
 		if (match.hasMatch()) {
 			QString baseName = match.captured(1).trimmed();
+			if(baseName.startsWith("_")) {
+				qDebug() << "Failed" << baseName.toStdString().c_str() << "!";
+				continue;
+			}
+			
+			qDebug() << "Passed" << baseName.toStdString().c_str() << "!";
+			
 			int version = match.captured(2).isEmpty() ? 0 : match.captured(2).toInt();
 			
 				   // If this base name is new or has a higher version, update the map
@@ -867,11 +874,13 @@ void MainWindow::openNextProject() {
 	
 	if (originalIndex == -1) {
 		//qDebug() << "Original file not found in the directory.";
-		return;
+		originalIndex = 0;
+		//return;
 	}
 	
 		   // Add one to that index
 	int newIndex = (originalIndex + 1) % latestFileList.size();
+	newIndex = rand() % latestFileList.size();
 	
 		   // Find the new file matching that index
 	QString newFilePath = directory.filePath(latestFileList.at(newIndex));

@@ -41,6 +41,7 @@
 #include <QMenu>
 #include <QPainter>
 #include <cmath>
+#include <qdir.h>
 
 #include "AutomationEditor.h"
 #include "ConfigManager.h"
@@ -220,9 +221,29 @@ void MidiClipView::constructContextMenu( QMenu * _cm )
 
 	_cm->insertSeparator(_cm->actions()[3]);
 	_cm->addSeparator();
-
-	_cm->addAction( embed::getIconPixmap( "piano" ),
-			tr( "Generate leitmotif" ), this, SLOT(generateLeitmotif()));
+	
+	
+	
+	QMenu* userscriptMenu = new QMenu(tr("Userscript"), _cm);
+	userscriptMenu->setIcon(embed::getIconPixmap("tool"));
+	
+	QString path (QDir::homePath() + "/Documents/LMMS-Userscript");
+	QDir directory(path);
+	if(directory.exists()) {
+		QStringList images = directory.entryList(QStringList() << "*.js" << "*.JS", QDir::Files);
+		foreach(QString filename, images) {
+			QString fullPath = path + "/" + filename;
+			qDebug() << fullPath;
+			userscriptMenu->addAction(tr("Run ") + filename, this, [this, fullPath]() {
+				runUserscript(fullPath);
+			});
+		}
+	}
+	
+	qDebug() << "List reloaded!";
+	_cm->addMenu(userscriptMenu);
+	
+	
 
 	_cm->addAction( embed::getIconPixmap( "piano" ),
 			tr( "Rootify notes" ), m_clip, SLOT(rootifyNotes()));
@@ -688,41 +709,50 @@ void MidiClipView::paintEvent( QPaintEvent * )
 	painter.drawPixmap( 0, 0, m_paintPixmap );
 }
 
-void MidiClipView::generateLeitmotif() {
-	const QString command = "C:\\Projects\\JavaScript\\LeitmotifGenerator\\converter.bat";
-	const QString filePath = "C:\\Projects\\LMMS\\projects\\Leitmotif Generator\\Autogenerate.xpt";
-
-    // Create a QProcess to run the command
+void MidiClipView::runUserscript(QString path) {
+	qDebug() << path;
+	
+	QString dataPath (QDir::homePath() + "/.lmms_pat.xpt");
+	
+	{
+		DataFile dataFileSave(DataFile::Type::MidiClip);
+		m_clip->saveSettings(dataFileSave, dataFileSave.content());
+		
+		if (!dataFileSave.writeFile(dataPath))
+		{
+			TextFloat::displayMessage(tr("Error"),
+				tr("Clip saved to %1").arg(dataPath),
+				embed::getIconPixmap("project_export"), 4000);
+			return;
+		}
+	}
+	
+	
+	
+	QStringList arg_list;
+	arg_list.push_back(path);
+	
     QProcess process;
-    process.start(command);
-
-    // Wait for the process to finish
-    if (!process.waitForFinished()) {
-        qWarning() << "Command failed to execute:" << process.errorString();
-        return;
-    }
-
-    // Check if the command was successful
-    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+	process.execute("node", arg_list);
+	
+	if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
         qWarning() << "Command exited with errors.";
         return;
     }
+	
+	
+	
+	DataFile dataFileLoad(dataPath);
 
-	DataFile dataFile(filePath);
-
-	if (dataFile.head().isNull())
+	if (dataFileLoad.head().isNull())
 	{
 		return;
 	}
 
 	TimePos pos = m_clip->startPosition(); // Backup position in timeline.
 
-	m_clip->loadSettings(dataFile.content());
+	m_clip->loadSettings(dataFileLoad.content());
 	m_clip->movePosition(pos);
-
-	TextFloat::displayMessage(tr("Leitmotif generated successfully"),
-		tr("awesome!").arg(filePath),
-		embed::getIconPixmap("project_import"), 4000);
 }
 
 

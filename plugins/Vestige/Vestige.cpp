@@ -38,6 +38,7 @@
 #include <QMdiArea>
 #include <QMenu>
 #include <QDomElement>
+#include <qdebug.h>
 
 
 #include "AudioEngine.h"
@@ -353,6 +354,7 @@ void VestigeInstrument::loadFile( const QString & _file )
 		closePlugin();
 	}
 	m_pluginDLL = PathUtil::toShortestRelative( _file );
+	
 	gui::TextFloat * tf = nullptr;
 	if( gui::getGUI() != nullptr )
 	{
@@ -383,6 +385,16 @@ void VestigeInstrument::loadFile( const QString & _file )
 	if( set_ch_name )
 	{
 		instrumentTrack()->setName( m_plugin->name() );
+	}
+	
+	qDebug() << "Name incoming!";
+	qDebug() << m_plugin->name();
+	
+	if( m_plugin->name().contains("FL Studio VSTi") )
+	{
+		qDebug() << "Name passed FL Studio check.";
+		m_plugin->setParam(0, 1.0);
+		m_plugin->setParam(0, 0.0);
 	}
 
 	m_pluginMutex.unlock();

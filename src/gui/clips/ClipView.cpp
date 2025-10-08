@@ -24,6 +24,7 @@
 
 #include "ClipView.h"
 
+#include <qdebug.h>
 #include <set>
 #include <cassert>
 
